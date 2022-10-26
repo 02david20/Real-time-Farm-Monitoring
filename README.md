@@ -1,12 +1,12 @@
 # BASIC SHARED REPOSITORY WORKFLOW
-1. update your local repo with git pull origin master,
+1. Update your local repo with git pull origin master,
 create a working branch with **git checkout -b MyNewBranch**
-2. make your changes on your branch and stage them with **git add .**
-3. commit your changes locally with **git commit -m "description of your commit"**, and
+2. Make your changes on your branch and stage them with **git add .**
+3. Commit your changes locally with **git commit -m "description of your commit"**, and
 upload the changes (including your new branch) to GitHub with **git push origin MyNewBranch**
 4. Go to the main repo on GitHub where you should now see your new branch
-5. click on your branch name
-6. click on “Pull Request” button (URC) click on “Send Pull Request
+5. Click on your branch name
+6. Click on “Pull Request” button (URC) click on “Send Pull Request
 
 
 # Getting Started with Create React App
