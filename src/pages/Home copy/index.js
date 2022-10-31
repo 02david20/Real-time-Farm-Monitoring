@@ -1,8 +1,8 @@
 import styles from './mainpage.module.css'
 
-function MainPage() {
+function HomePage() {
 
 
 }
 
-export default MainPage;
+export default HomePage;
