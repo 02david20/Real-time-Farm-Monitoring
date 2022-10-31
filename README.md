@@ -8,6 +8,24 @@ upload the changes (including your new branch) to GitHub with **git push origin 
 5. Click on your branch name
 6. Click on “Pull Request” button (URC) click on “Send Pull Request
 
+# Folder Organization
+## src/components
+- Các components sẽ được chứa tại đây, mỗi trang/ component lớn sẽ lại được chia nhỏ thành các thư mục
+- Có một Components mang tên Global nhằm đánh CSS chung cho toàn bộ các components
+- Mỗi component sẽ bao gồm các thành phần:
+  - Các file js
+  - File index.js
+  - File {}.module.css sử dụng Module CSS để tách biệt CSS giữa các components với nhau
+## src/api
+- Chứa các API để gọi lấy thông tin từ backend
+
+## src/assets
+- Chứa các hình ảnh chung của trang web
+
+## src/services
+- Chứa các file js bao gồm các function xử lí login của ứng dụng
+
+
 
 # Getting Started with Create React App
 
