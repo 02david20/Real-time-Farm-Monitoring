@@ -2,13 +2,13 @@ import {Routes, Route} from 'react-router-dom'
 
 import './App.css';
 import Global from './components/Global';
-import publicRoutes from './routes'
+import {publicRoutes} from './routes'
 import {DefaultLayout} from './components/Layouts'
 import { Fragment } from 'react';
 
 function App() {
+  console.log(publicRoutes)
   return (
-    
     <div className="App">
       <Global>    
           <Routes>
