@@ -3,8 +3,8 @@ import Header from "./Header";
 function DefaultLayout({children}) {
     return ( 
         <div>        
-            <Headers>
-            </Headers>
+            <Header>
+            </Header>
             <div className="container">
                 <div className = "content">{children}</div>
             

@@ -2,7 +2,7 @@ import {Routes, Route} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import Global from './components/Global';
-import publicRoutes from './routes'
+import {publicRoutes} from './routes'
 import {DefaultLayout} from './components/Layouts'
 import { Fragment } from 'react';
 
