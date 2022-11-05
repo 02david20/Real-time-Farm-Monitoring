@@ -1,5 +1,5 @@
 // Import Layout
-import { HeaderOnly } from "../components/Layouts"
+// import { HeaderOnly } from "../components/Layouts"
 
 // Import Route Pages
 import HomePage from "../pages/Home"
