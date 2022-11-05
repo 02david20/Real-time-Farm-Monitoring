@@ -1,5 +1,5 @@
 // Import Layout
-// import { HeaderOnly } from "../components/Layouts"
+import { HeaderOnly } from "../components/Layouts"
 
 // Import Route Pages
 import HomePage from "../pages/Home"
@@ -7,11 +7,11 @@ import HomePage from "../pages/Home"
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
-    {path: "\\", component: HomePage },
-    {path: "\sample", component: HomePage }
+    {path: "/", component: HomePage },
+    {path: "/sample", component: HomePage, layout:HeaderOnly }
 ]
 
-export const privateRoutes = []
+const privateRoutes = []
 
-export default {publicRoutes,privateRoutes}
+export {publicRoutes,privateRoutes}
 //Require Login
