@@ -9,9 +9,8 @@ import ManageFarm from "../pages/Manage farm"
 // layout:null --> No Layout
 const publicRoutes = [
     {path: "/", component: HomePage },
-    {path: "/sample", component: HomePage, layout:HeaderOnly },
-    {path: "/manage_farm", component: ManageFarm}
-];
+    {path: "/sample", component: HomePage, layout:HeaderOnly }
+]
 
 //Require Login
 const privateRoutes = [];

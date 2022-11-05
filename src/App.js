@@ -7,8 +7,8 @@ import {DefaultLayout} from './components/Layouts'
 import { Fragment } from 'react';
 
 function App() {
+  console.log(publicRoutes)
   return (
-    
     <div className="App">
       <Global>    
           <Routes>
