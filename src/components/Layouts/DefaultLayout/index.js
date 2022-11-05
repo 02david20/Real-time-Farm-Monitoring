@@ -4,8 +4,8 @@ import Sidebar from "./Sidebar"
 function DefaultLayout({children}) {
     return ( 
         <div>        
-            <Headers>
-            </Headers>
+            <Header>
+            </Header>
             <div className="container">
                 <Sidebar>
                 </Sidebar>
