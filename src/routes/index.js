@@ -1,5 +1,5 @@
 // Import Layout
-import { HeaderOnly } from "../components/Layouts"
+
 
 // Import Route Pages
 import HomePage from "../pages/Home"
@@ -9,7 +9,8 @@ import ManageFarm from "../pages/Manage farm"
 // layout:null --> No Layout
 const publicRoutes = [
     {path: "/", component: HomePage },
-    {path: "/sample", component: HomePage, layout:HeaderOnly }
+    {path: "/sample", component: HomePage},
+    {path: "/sample/setting", component: HomePage}
 ]
 
 //Require Login
