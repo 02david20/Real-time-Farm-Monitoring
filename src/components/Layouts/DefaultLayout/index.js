@@ -10,7 +10,9 @@ function DefaultLayout({children}) {
 
             <UserSidebar></UserSidebar>
            
-
+            <div className="container">
+                <div className = "content">{children}</div>
+            </div>
         </div>
     );
 }

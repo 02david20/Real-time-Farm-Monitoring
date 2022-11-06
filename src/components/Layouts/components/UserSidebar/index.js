@@ -106,9 +106,6 @@ function UserSidebar({children}) {
                     </SideNav.Nav>
             </SideNav>
 
-            <div className="container">
-                <div className = "content">{children}</div>
-            </div>
 
         </div>
     );
