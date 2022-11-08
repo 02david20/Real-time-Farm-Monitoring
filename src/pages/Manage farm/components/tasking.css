@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.area {
+    background-color: #edf5e1;
+    margin-left: 50px;
+}
+
+.add-button {
+    background-color: #05386b;
+    padding: 10px 10px;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 980px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 20px 0px;
+}
+
+li {
+    background-color: white;
+    margin: 20px 70px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+li h2 {
+    margin: 0;
+    padding: 0;
+    padding-left: 40px;
+    font-size: 40px;
+}
+
+.time-icon {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    padding: 0;
+    margin-left: 400px;
+}
+
+.time {
+    font-size: 40px;
+    align-items: center;
+}
+
+.time p {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.option {
+    position: relative;
+    display: inline-block;
+}
+
+.option-icon {
+    margin-left: 150px;
+    width: 40px;
+    height: 40px;
+}
+
+.option-content {
+    display: none;
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1; 
+}
+
+.option-content p {
+    margin: 0;
+}
+
+.option:hover .option-content {
+    display: block;
+} 

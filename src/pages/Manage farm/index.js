@@ -1,7 +1,14 @@
 import styles from './mainpage.module.css'
+import Navbar from './components/navbar.js'
+import Tasking from './components/tasking.js'
 
 function Manage_farm() {
-    return <h2>Manage_farm page</h2>
+    return (
+        <div>
+            <Navbar />
+            <Tasking />
+        </div>
+    );
 }
 
 export default Manage_farm;
