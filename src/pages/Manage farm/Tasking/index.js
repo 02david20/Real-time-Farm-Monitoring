@@ -1,4 +1,4 @@
-import styles from './mainpage.module.css'
+import styles from '../mainpage.module.css'
 import Navbar from './components/navbar.js'
 import Tasking from './components/tasking.js'
 

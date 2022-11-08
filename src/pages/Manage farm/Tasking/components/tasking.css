@@ -8,6 +8,14 @@
     margin-left: 50px;
 }
 
+#open .manage-task {
+    display: none;
+}
+
+#close .add-task {
+    display: none;
+}
+
 .add-button {
     background-color: #05386b;
     padding: 10px 10px;
@@ -62,7 +70,9 @@ li h2 {
 }
 
 .option-icon {
+    position: relative;
     margin-left: 150px;
+    right: 10px;
     width: 40px;
     height: 40px;
 }
@@ -85,4 +95,63 @@ li h2 {
 
 .option:hover .option-content {
     display: block;
-} 
+}
+
+.section {
+    padding: 40px 0px;
+    text-align: left;
+    margin-left: 50px;
+}
+
+.section input {
+    width: 95%;
+    height: 80px;
+    font-size: 40px;
+}
+
+.section input[type=text] {
+    padding-left: 50px;
+}
+
+.description {
+    display: flex;
+    text-align: left;
+    margin-left: 50px;
+    padding-bottom: 50px;
+}
+
+.leftside textarea {
+    font-size: 40px;
+    height: 400px;
+    padding: 15px 50px;
+    margin-right: 100px;
+}
+
+.rightside {
+    font-size: 30px;
+}
+
+.rightside input {
+    margin: 0px 20px 40px 20px;
+    padding-left: 20px;
+}
+
+.add-task-button {
+    position: absolute;
+    right: 200px;
+    bottom: 40px;
+}
+
+.add-task-button button {
+    padding: 10px 20px;
+    margin: 0px 20px;
+}
+
+.add-task-button .del-task {
+    background-color: #D9D9D9;
+}
+
+.add-task-button .adding-task {
+    background-color: #05386B;
+    color: white;
+}
