@@ -19,7 +19,7 @@ const publicRoutes = [
     {path: "/sample/setting", component: HomePage},
     {path: "/manage_farm", component: Tasking},
     {path: "/manage_farm/tasking", component: Tasking},
-    {path: "/manage_farm/setting-pump", component: Setting_pump}
+    {path: "/manage_farm/setting-pump", component: Setting_pump},
     {path: "/field/setting", component: Setting},
     {path: "/history", component: History },
 ]
