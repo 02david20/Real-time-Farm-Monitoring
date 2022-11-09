@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import { Icon } from '@iconify/react';
-import './settingpump.css'
+import './settingpump.scss'
 
 function Setting_pump() {
     const mapContainer = useRef(0);
