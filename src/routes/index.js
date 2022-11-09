@@ -2,8 +2,9 @@
 
 // Import Route Pages
 
-import HomePage from "../pages/Home"
+
 import Setting from "../pages/Setting"
+import History from "../pages/History"
 import HomePage from "../pages/Home";
 
 
@@ -15,7 +16,7 @@ const publicRoutes = [
     {path: "/sample", component: HomePage},
     {path: "/sample/setting", component: HomePage},
     {path: "/field/setting", component: Setting},
-    { path: "/history", component: History },
+    {path: "/history", component: History },
 ]
 
 
