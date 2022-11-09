@@ -1,0 +1,84 @@
+.dash {
+    font-size:30px;
+    color:white;
+}
+
+.dpicon {
+    width: 50px;
+    height: 30px;
+    background-color:white;
+    font-size:20px;
+}
+
+.downloadicon {
+    width: 30px;
+    height: 30px;
+    background-color:white;
+    font-size:20px;
+}
+
+.avgCover {
+    margin-top: 10px;
+    background-color:#5CDB95;
+    border-radius: 10px;
+}
+
+.avgTemp {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align:center;
+}
+
+.avgTempText {
+    width: 150px;
+    height: 100px;
+    background-color: white;
+    font-size: 54px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.avgGraph {
+    height: 300px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.sensorCover {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #5CDB95;
+}
+
+.sensorInfo {
+    width: 80%;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: auto;
+}
+
+.sensorGraph {
+    height: 200px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.downloadBtn {
+    margin-left: 70px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
