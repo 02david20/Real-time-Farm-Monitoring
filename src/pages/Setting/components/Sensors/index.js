@@ -33,15 +33,15 @@ function Sensors() {
             }
         ]
     })
-
-    const [sensorList, setSensorList] = useState(sensors)
+    
+    const [sensorList, setSensorList] = useState(() => sensors)
     const [choose, setChoose] = useState(0)
-    const [switchSensor,setSwitchSensor] = useState(sensorList[choose].mode)
+    const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
+    const [lng, setLng] = useState(() => sensorList[0].long);
+    const [lat, setLat] = useState(() => sensorList[0].lat);
     const [zoom, setZoom] = useState(9);
     useEffect(() => {
             if (map.current) return; // initialize map only once
@@ -53,7 +53,27 @@ function Sensors() {
             });
     });
 
+    console.log(lng,lat)
+
     // Move map when have change in lat and lng
+    // Change OnClick or change in sensorList
+    useEffect(() => {
+        
+        handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
+        
+    },[choose])
+
+    useEffect(() => {
+        if(sensorList.length){
+            if(0 <= choose && choose < sensorList.length-1)
+               handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
+            else 
+                setChoose(prev=>prev-1)
+        }
+        
+    },[sensorList])
+
+    // Jump map to new lng, lat if changed
     useEffect(() => {
         map.current.jumpTo({
             'center':[lng,lat],
@@ -79,6 +99,10 @@ function Sensors() {
         }
     }
 
+    const handleSubmitChange = () => {
+        
+    }
+
     // Change lng, lat to new location
     const handleMoveMap = (long,lat) => {
         setLng(long)
@@ -87,7 +111,13 @@ function Sensors() {
     }
 
     const handleRemoveSensor = () => {
-
+        console.log(sensorList)
+        const len = sensorList.length;
+        if(len) {
+            setSensorList(prev => [...prev.slice(0, choose), ...prev.slice(choose + 1)])
+        }else {
+            alert("There are no sensors left");
+        }
     }
     const handleEditSensor = () => {
 
@@ -97,8 +127,20 @@ function Sensors() {
     }
     return (
         <div style={{height:"100%"}}>
-
-            <Toolbars></Toolbars>
+            <div className="btn btn-success"
+                 style = {{
+                    position: 'fixed',
+                    bottom: '10px',
+                    right:'7%',
+                 }}    
+            >
+                Xác nhận
+            </div>
+            <Toolbars
+                 removeSensor = {handleRemoveSensor}
+                 editSensor = {handleEditSensor}
+                 addSensor = {handleAddSensor}
+            ></Toolbars>
             <Row style={{height:"inherit"}}>
                 <Col xs={3}
                     className="hideScroll"
@@ -120,7 +162,6 @@ function Sensors() {
                                     }}    
                                     onClick={()=>{
                                         setChoose(index)
-                                        handleMoveMap(-70.39, 43.35+index)
                                     }}
                                 >
                                     <Sensor
@@ -140,7 +181,7 @@ function Sensors() {
                 <Col xs={9} style = {{backgroundColor:"greenyellow"}}>
 
                     <Container>                        
-                        {sensorList[choose].long +" | "+ sensorList[choose].lat}  
+                         
                        
                         <div>
                             <div ref={mapContainer} style={{height:"450px"}} />
