@@ -8,18 +8,38 @@ function Tasking() {
         setOpenAddingTask(!openAddingTask)
     }
     const tasks = [
-        {name: "Công việc 1", time: "0h 57m"},
-        {name: "Công việc 1", time: "2h 34m"},
-        {name: "Công việc 1", time: "3h 16m"},
-        {name: "Công việc 1", time: "10h 02m"}
+        {
+            name: "Công việc 1", 
+            time:{day: 0, hour: 0, minute: 57}
+        },
+        {
+            name: "Công việc 2", 
+            time:{day: 0, hour: 2, minute: 34}
+        },
+        {
+            name: "Công việc 3", 
+            time:{day: 0, hour: 3, minute: 16}
+        },
+        {
+            name: "Công việc 4", 
+            time:{day: 0, hour: 10, minute: 2}
+        }
     ];
+
+    function convertTime(time) {
+        let string_time = ""
+        if (time.day != 0) string_time += time.day + "d ";
+        string_time += time.hour + "h " + time.minute + "m";
+        return string_time
+    }
+
     function Task(props) {
         return (
             <li>
                 <h2>{props.name}</h2>
                 <Icon icon="ic:baseline-access-time" className="time-icon" />
                 <div className='time'>
-                    <p>{props.time}</p>
+                    <p>{convertTime(props.time)}</p>
                 </div>
                 <div className="option">
                     <Icon icon="bx:dots-horizontal-rounded" className="option-icon" />
