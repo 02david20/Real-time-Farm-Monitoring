@@ -1,25 +1,6 @@
 import React, { useState } from 'react'
 import { Icon } from '@iconify/react'
-import './tasking.css'
-
-function Task(props) {
-    return (
-        <li>
-            <h2>{props.name}</h2>
-            <Icon icon="ic:baseline-access-time" className="time-icon" />
-            <div className='time'>
-                <p>{props.time}</p>
-            </div>
-            <div className="option">
-                <Icon icon="bx:dots-horizontal-rounded" className="option-icon" />
-                <div className="option-content">
-                    <p>Chỉnh sửa</p>
-                    <p>Xóa</p>
-                </div>
-            </div>
-        </li>
-    )
-}
+import './tasking.scss'
 
 function Tasking() {
     const [openAddingTask, setOpenAddingTask] = useState(false)
@@ -32,6 +13,24 @@ function Tasking() {
         {name: "Công việc 1", time: "3h 16m"},
         {name: "Công việc 1", time: "10h 02m"}
     ];
+    function Task(props) {
+        return (
+            <li>
+                <h2>{props.name}</h2>
+                <Icon icon="ic:baseline-access-time" className="time-icon" />
+                <div className='time'>
+                    <p>{props.time}</p>
+                </div>
+                <div className="option">
+                    <Icon icon="bx:dots-horizontal-rounded" className="option-icon" />
+                    <div className="option-content">
+                        <div><button onClick={addingTask}>Chỉnh sửa</button></div>
+                        <div><button>Xóa</button></div>
+                    </div>
+                </div>
+            </li>
+        )
+    }
     return (
         <div className='task'>
             <div className='area' id={openAddingTask ? "open" : "close"}>
@@ -63,16 +62,21 @@ function Tasking() {
                         </div>
                         <div className='rightside'>
                             <div>
-                                <label for='date'>Select date:</label>
+                                <label for='date'>Chọn ngày:</label>
                                 <input type='date' name='date'></input>
                                 <div className='set-time'>
-                                    <label for='start'>From:</label>
+                                    <label for='start'>Từ:</label>
                                     <input type='time' name='start'></input>
-                                    <label for='end'>To:</label>
+                                    <label for='end'>Đến:</label>
                                     <input type='time' name='end'></input>
                                 </div>
                                 <div>
-
+                                    <select>
+                                        <option>Không lặp</option>
+                                        <option>Hằng ngày</option>
+                                        <option>Hằng tuần</option>
+                                        <option>Hằng tháng</option>
+                                    </select>
                                 </div>
                                 <div className='add-task-button'>
                                     <button type='button' className='del-task' onClick={addingTask}>Xóa</button>
