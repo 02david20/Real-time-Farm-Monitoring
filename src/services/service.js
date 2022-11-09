@@ -1,0 +1,3 @@
+function getSensorData(JWT) {
+
+}
