@@ -2,6 +2,7 @@ import SideNav, {NavItem, NavIcon, NavText} from "@trendmicro/react-sidenav"
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { useState } from "react";
 import { Icon } from '@iconify/react';
+import { Link } from "react-router-dom";
 
 import styles from "./UserSidebar.module.css"
 import logo from '../../../../assets/images/Logo.png'
@@ -47,7 +48,7 @@ function UserSidebar({children}) {
                         <Icon icon="noto-v1:woman-farmer-light-skin-tone" width="30" height="30" />
                         </NavIcon>
                         <NavText>
-                            Khu vườn
+                            <Link to="/field">Khu vườn</Link>
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="history">
@@ -55,7 +56,7 @@ function UserSidebar({children}) {
                         <Icon icon="ant-design:history-outlined" color="white" width="30" height="30" />
                         </NavIcon>
                         <NavText>
-                            Lịch sử
+                            <Link to="/history">Lịch sử</Link>
                         </NavText>
                     </NavItem>
 
@@ -64,7 +65,7 @@ function UserSidebar({children}) {
                          <Icon icon="icon-park-outline:plan" color="white" width="30" height="30" />
                         </NavIcon>
                         <NavText>
-                            Lên kế hoạch
+                            <Link to="/manage_farm/tasking">Lịch sử</Link>
                         </NavText>
                     </NavItem>
 

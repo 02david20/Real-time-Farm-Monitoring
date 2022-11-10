@@ -1,3 +1,10 @@
+/*-----CUSTOMIZE REACT BOOTSTRAP-----*/
+.bg-darkblue {
+  background-color: #05386B;
+}
+
+/*----------------END----------------*/
+
 .App {
   text-align: center;
 }
