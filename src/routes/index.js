@@ -21,6 +21,7 @@ const publicRoutes = [
     {path: "/manage_farm/tasking", component: Tasking},
     {path: "/manage_farm/setting-pump", component: Setting_pump},
     {path: "/field/setting", component: Setting},
+    {path: "/field", component: Setting},
     {path: "/history", component: History },
 ]
 

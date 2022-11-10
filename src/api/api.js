@@ -1,6 +1,7 @@
 const sensors = [
     {
         id : 1,
+        name: '1',
         type: "temp",
         data: 36,
         mode:'active',
@@ -9,6 +10,7 @@ const sensors = [
     },
     {
         id : 2,
+        name: '1',
         type: "temp",
         data: 37,
         mode:'disable',
@@ -18,6 +20,7 @@ const sensors = [
     },
     {
         id : 3,
+        name: '1',
         type: "moist",
         data: 20,
         mode:'active',
@@ -27,6 +30,7 @@ const sensors = [
     },
     {
         id : 4,
+        name: '1',
         type: "moist",
         data: 25,
         mode:'active',
