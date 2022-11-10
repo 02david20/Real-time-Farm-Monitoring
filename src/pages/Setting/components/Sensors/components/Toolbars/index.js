@@ -19,7 +19,10 @@ function Toolbars (props) {
                     onClick={() => props.removeSensor()}
 
                 >Delete</RB.Button> 
-                <RB.Button  className = {styles.button}>Edit</RB.Button>
+                <RB.Button  
+                    className = {styles.button}
+                    onClick={()=> props.editSensor()}
+                >Edit</RB.Button>
                 <RB.Button  className = {styles.button} 
                             variant="success"
                 >Add</RB.Button>  
