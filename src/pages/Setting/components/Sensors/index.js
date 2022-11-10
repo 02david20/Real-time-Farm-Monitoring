@@ -1,10 +1,12 @@
 import Sensor from './components/Sensor'
 import Toolbars from './components/Toolbars'
+import SensorDetail from './components/SensorDetail'
 
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
+import { useForm } from "react-hook-form";
 
 import Container from 'react-bootstrap/Container'
 import { useRef, useEffect, useState } from 'react'
@@ -19,7 +21,7 @@ import {sensors} from '../../../../api/api'
 mapboxgl.accessToken = 'pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNucGMydGhnNHNheCJ9.CaiZuHejM4TIVmh4KnMpaw';
 
 function Sensors() {
-    const [sensorForm, setSensorForm] = useState({
+    const sensorForm  = useRef({
         userName:'',
         add : [''],
         remove: [''],
@@ -37,6 +39,7 @@ function Sensors() {
     const [sensorList, setSensorList] = useState(() => sensors)
     const [choose, setChoose] = useState(0)
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
+    const [showForm, setShowForm] = useState(false)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -53,22 +56,28 @@ function Sensors() {
             });
     });
 
-    console.log(lng,lat)
 
     // Move map when have change in lat and lng
     // Change OnClick or change in sensorList
     useEffect(() => {
-        
         handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
-        
     },[choose])
 
     useEffect(() => {
         if(sensorList.length){
+            // If delete sensor between except last element
             if(0 <= choose && choose < sensorList.length-1)
                handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
-            else 
-                setChoose(prev=>prev-1)
+            else  {
+                if(sensorList.length > 1) {
+                    const chooseAfterDelete = choose-1;
+                    setChoose(chooseAfterDelete)
+                    handleMoveMap(sensorList[chooseAfterDelete].long, sensorList[chooseAfterDelete].lat)
+                } else {
+                    setChoose(0)
+                    handleMoveMap(sensorList[0].long, sensorList[0].lat)
+                }     
+            }
         }
         
     },[sensorList])
@@ -100,7 +109,8 @@ function Sensors() {
     }
 
     const handleSubmitChange = () => {
-        
+        // Call Change API
+        console.log(sensorForm)
     }
 
     // Change lng, lat to new location
@@ -109,24 +119,27 @@ function Sensors() {
         setLat(lat)
         setZoom(20)
     }
-
+    // Xóa một sensor
     const handleRemoveSensor = () => {
-        console.log(sensorList)
         const len = sensorList.length;
         if(len) {
             setSensorList(prev => [...prev.slice(0, choose), ...prev.slice(choose + 1)])
+            sensorForm.current.remove.push(sensorList[choose]);
+
         }else {
             alert("There are no sensors left");
         }
     }
-    const handleEditSensor = () => {
 
+    // Chỉnh sửa thông tin của 1 sensor
+    const handleEditSensor = () => {
+        setShowForm(prev => !prev)
     }
     const handleAddSensor = () => {
-
+        
     }
     return (
-        <div style={{height:"100%"}}>
+        <div>
             <div className="btn btn-success"
                  style = {{
                     position: 'fixed',
@@ -141,6 +154,17 @@ function Sensors() {
                  editSensor = {handleEditSensor}
                  addSensor = {handleAddSensor}
             ></Toolbars>
+
+            {   showForm &&
+                <SensorDetail
+                    choose={choose}
+                    setSensorList = {setSensorList}
+                    sensorForm = {sensorForm}
+                    sensorList={sensorList}
+                ></SensorDetail>
+            }
+
+
             <Row style={{height:"inherit"}}>
                 <Col xs={3}
                     className="hideScroll"
