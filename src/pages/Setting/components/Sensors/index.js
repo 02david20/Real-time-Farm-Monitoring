@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import Container from 'react-bootstrap/Container'
 import { useRef, useEffect, useState } from 'react'
 
-import 'mapbox-gl/dist/mapbox-gl.css';
+
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 // Sensor API array
@@ -35,7 +35,8 @@ function Sensors() {
             }
         ]
     })
-    
+
+    const initSensorList = useRef(()=>sensors);
     const [sensorList, setSensorList] = useState(() => sensors)
     const [choose, setChoose] = useState(0)
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
@@ -46,6 +47,7 @@ function Sensors() {
     const [lng, setLng] = useState(() => sensorList[0].long);
     const [lat, setLat] = useState(() => sensorList[0].lat);
     const [zoom, setZoom] = useState(9);
+
     useEffect(() => {
             if (map.current) return; // initialize map only once
             map.current = new mapboxgl.Map({
@@ -56,11 +58,28 @@ function Sensors() {
             });
     });
 
+    // Add Marker on
+    useEffect(() => {
+        const marker = new mapboxgl.Marker(
+            <div
+            style={{
+              width: '5rem',
+              height: '5rem',
+              borderRadius: '50%',
+              cursor: 'pointer',
+            }} />
+        )
+            .setLngLat([lng, lat])
+            .addTo(map.current);
+    });
+    
 
     // Move map when have change in lat and lng
     // Change OnClick or change in sensorList
     useEffect(() => {
         handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
+
+        setSwitchSensor(sensorList[choose].mode)
     },[choose])
 
     useEffect(() => {
@@ -93,13 +112,13 @@ function Sensors() {
 
     const handleSwitch = () => {
         if(switchSensor === "active") {
-            setSwitchSensor("disabled")
+            setSwitchSensor("disable")
             setSensorList(prev => {
-                prev[choose].mode='disabled'
+                prev[choose].mode='disable'
                 return prev;
             })
         }
-        else if(switchSensor === "disabled") {
+        else if(switchSensor === "disable") {
             setSwitchSensor("active")
             setSensorList(prev => {
                 prev[choose].mode='active'
@@ -109,6 +128,8 @@ function Sensors() {
     }
 
     const handleSubmitChange = () => {
+        // Compare State of sensorList and initSensorList
+
         // Call Change API
         console.log(sensorForm)
     }
@@ -138,6 +159,8 @@ function Sensors() {
     const handleAddSensor = () => {
         
     }
+
+    
     return (
         <div>
             <div className="btn btn-success"
@@ -146,6 +169,7 @@ function Sensors() {
                     bottom: '10px',
                     right:'7%',
                  }}    
+                 onClick={()=>handleSubmitChange()}
             >
                 Xác nhận
             </div>
