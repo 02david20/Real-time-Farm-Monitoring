@@ -7,20 +7,30 @@ import data from './data.json'
 function Tasking() {
     const { register, getValues } = useForm();
     const [openAddingTask, setOpenAddingTask] = useState(false)
+    const [addOrEditTask, setAddOrEditTask] = useState(true)
     const switchToAddTask = () => {
+        setAddOrEditTask(true)
         setOpenAddingTask(!openAddingTask)
         document.getElementsByTagName("form")[0].reset()
+    }
+    const switchToEditTask = () => {
+        setAddOrEditTask(false)
+        setOpenAddingTask(!openAddingTask)
     }
     const addTask = () => {
         alert(JSON.stringify(getValues()));
         setOpenAddingTask(!openAddingTask)
     }
-    const delTask = () => {
-        setOpenAddingTask(!openAddingTask)
-    } 
-    const editTask = () => {
+    const removeTask = () => {
         setOpenAddingTask(!openAddingTask)
     }
+    const denyChange = () => {
+        setOpenAddingTask(!openAddingTask)
+    }
+    const saveEditTask = () => {
+        alert(JSON.stringify(getValues()));
+        setOpenAddingTask(!openAddingTask)
+    } 
 
     function convertTime(time) {
         let string_time = "";
@@ -40,7 +50,7 @@ function Tasking() {
                 <div className="option">
                     <Icon icon="bx:dots-horizontal-rounded" className="option-icon" />
                     <div className="option-content">
-                        <div><button onClick={editTask}>Chỉnh sửa</button></div>
+                        <div><button onClick={switchToEditTask}>Chỉnh sửa</button></div>
                         <div><button>Xóa</button></div>
                     </div>
                 </div>
@@ -53,7 +63,11 @@ function Tasking() {
                 <div className='manage-task'>
                     <div className='show-task-list'>
                         <div className='add'>
-                            <button type='button' className="add-button" onClick={switchToAddTask}>Tạo công việc</button>
+                            <button 
+                                type='button' 
+                                className="add-button" 
+                                onClick={switchToAddTask}
+                            >Tạo công việc</button>
                         </div>
                         <div className='task-list'>
                             <ul>
@@ -65,17 +79,30 @@ function Tasking() {
                         </div>
                     </div>
                     <div className='show-add-task'>
-    
+                        <button className='toPrevTaskList'>
+                            &lt;
+                        </button>
+                        <div>
+                            Trang 1
+                        </div>
+                        <button className='toNextTaskList'>
+                            &gt;
+                        </button>
                     </div>
                 </div>
                 <div className='add-task'>
                     <form>
                         <div className='section'>
-                            <input type='text' placeholder="Đặt tên chủ đề" {...register("section")}></input>
+                            <input 
+                                type='text' 
+                                placeholder="Đặt tên chủ đề" {...register("section")}
+                            ></input>
                         </div>
                         <div className='description'>
                             <div className='leftside'>
-                                <textarea placeholder='Nội dung...' {...register("content")}></textarea>
+                                <textarea 
+                                    placeholder='Nội dung...' {...register("content")}
+                                ></textarea>
                             </div>
                             <div className='rightside'>
                                 <div>
@@ -95,9 +122,15 @@ function Tasking() {
                                             <option>Hằng tháng</option>
                                         </select>
                                     </div>
-                                    <div className='add-task-button'>
-                                        <button type='button' className='del-task' onClick={delTask}>Xóa</button>                                        
-                                        <button type='button' className='adding-task' onClick={addTask}>Thêm công việc</button>
+                                    <div id={addOrEditTask ? "add" : "edit"}>
+                                        <div className='add-task-buttons'>
+                                            <button type='button' className='del-task' onClick={removeTask}>Xóa</button>                                        
+                                            <button type='button' className='adding-task' onClick={addTask}>Thêm công việc</button>
+                                        </div>
+                                        <div className='edit-task-buttons'>
+                                            <button type='button' className='del-change' onClick={denyChange}>Bỏ thay đổi</button>                                        
+                                            <button type='button' className='save-edit-task' onClick={saveEditTask}>Lưu chỉnh sửa</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
