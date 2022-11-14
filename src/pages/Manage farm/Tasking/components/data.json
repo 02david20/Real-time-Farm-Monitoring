@@ -1,18 +1,22 @@
 [
     {
+        "id": 1,
         "name": "Công việc 1", 
         "time":{"day": 0, "hour": 0, "minute": 57}
     },
     {
+        "id": 2,
         "name": "Công việc 2", 
         "time":{"day": 0, "hour": 2, "minute": 34}
     },
     {
+        "id": 3,
         "name": "Công việc 3", 
         "time":{"day": 0, "hour": 3, "minute": 16}
     },
     {
-       "name": "Công việc 4", 
+        "id": 4,
+        "name": "Công việc 4", 
         "time":{"day": 1, "hour": 10, "minute": 2}
     }
 ]
