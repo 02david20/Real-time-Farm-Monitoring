@@ -44,28 +44,35 @@ function UserSidebar({children}) {
                 <SideNav.Nav defaultSelected="home" >
 
                     <NavItem eventKey="home">
+                       
                         <NavIcon>
-                        <Icon icon="noto-v1:woman-farmer-light-skin-tone" width="30" height="30" />
+                            <Link to="/field">
+                                <Icon icon="noto-v1:woman-farmer-light-skin-tone" width="30" height="30" />
+                            </Link>
                         </NavIcon>
                         <NavText>
-                            <Link to="/field">Khu vườn</Link>
+                            Khu vườn
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="history">
                         <NavIcon>
+                        <Link to="/history">
                         <Icon icon="ant-design:history-outlined" color="white" width="30" height="30" />
+                        </Link>
                         </NavIcon>
                         <NavText>
-                            <Link to="/history">Lịch sử</Link>
+                            Lịch sử
                         </NavText>
                     </NavItem>
 
                     <NavItem eventKey="planning">
                         <NavIcon>
+                        <Link to="/manage_farm/tasking">
                          <Icon icon="icon-park-outline:plan" color="white" width="30" height="30" />
+                         </Link>
                         </NavIcon>
                         <NavText>
-                            <Link to="/manage_farm/tasking">Lịch sử</Link>
+                            Lập lịch
                         </NavText>
                     </NavItem>
 

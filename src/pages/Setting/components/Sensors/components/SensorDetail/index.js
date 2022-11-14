@@ -1,27 +1,33 @@
 import {useForm} from 'react-hook-form'
 
-function SensorDetail({choose, setSensorList, sensorForm, sensorList}) {
+function SensorDetail({choose, setSensorList, sensorList, sensorChange, showForm}) {
     const { register, getValues } = useForm();
+    const sensor =  sensorList[choose]
+    const handleSubmit = () => {
+      const values = getValues(); // { test: "test-input", test1: "test1-input" }
+      const id = sensor.id
+      if(parseFloat(values['long']) !== sensor['coordinate'][0])
+        sensorChange.current[id].push({long:parseFloat(values.long)})
+      if(parseFloat(values['lat']) !== sensor['coordinate'][1])
+        sensorChange.current[id].push({lat:parseFloat(values.lat)})
+      if(values['name'] !== sensor['name'])
+        sensorChange.current[id].push({name:values['name']})
+      if(values['type'] !== sensor['type'])
+        sensorChange.current[id].push({name:values['name']})
+    }
 
     return (
       <form style={{
-        backgroundColor: "blueviolet",
+        backgroundColor: "white",
         position:"absolute",
-        zIndex:1000,
+        zIndex:4,
         left:"50%",
-        padding: '20px',
+        padding: '2%',
+        
       }}
-  
+      onSubmit={e => { e.preventDefault(); }} // Disable Submission to handle Form Input
       >
-        <div className="form-group">
-          <label htmlFor="ID">Sensor ID</label>
-          <input type="text" 
-                  className="form-control" 
-                  id="ID" 
-                  defaultValue={sensorList[choose].id}
-                  {...register("ID")}
-          />
-        </div>
+        <h2>{sensor.id}</h2>
 
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -29,7 +35,7 @@ function SensorDetail({choose, setSensorList, sensorForm, sensorList}) {
                   className="form-control" 
                   id="name" 
                   placeholder=""
-                  defaultValue={sensorList[choose].name}
+                  defaultValue={sensor.name}
                   {...register("name")}
           />
         </div>
@@ -40,7 +46,7 @@ function SensorDetail({choose, setSensorList, sensorForm, sensorList}) {
                   className="form-control" 
                   id="type" 
                   placeholder=""
-                  defaultValue={sensorList[choose].type}
+                  defaultValue={sensor.type}
                   {...register("type")}
           />
         </div>
@@ -52,8 +58,8 @@ function SensorDetail({choose, setSensorList, sensorForm, sensorList}) {
                     className="form-control" 
                     id="long" 
                     placeholder=""
-                    defaultValue={sensorList[choose].long}
-                    {...register("lng")}
+                    defaultValue={sensor.coordinate[0]}
+                    {...register("long")}
             />
           </div>
           <div className = "col-6">
@@ -62,22 +68,31 @@ function SensorDetail({choose, setSensorList, sensorForm, sensorList}) {
                     className="form-control" 
                     id="lat" 
                     placeholder=""
-                    defaultValue={sensorList[choose].lat}
+                    defaultValue={sensor.coordinate[1]}
                     {...register("lat")}
             />
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => {
-            const values = getValues(); // { test: "test-input", test1: "test1-input" }
+        <div className='row mt-2 gap-4'>
+          <button
+            className='col btn btn-danger'
+            onClick={() => {
+              const values = getValues(); // { test: "test-input", test1: "test1-input" }
+              console.log(values);
+            }}
 
-            console.log(values);
-          }}
-        >
-          Get Values
-        </button>
+          >
+            Hủy
+          </button>
+            
+          <button
+            className='col btn btn-success'
+            onClick={() => {handleSubmit()}}
+          >
+            Xác nhận
+          </button>
+        </div>
       </form>
     );
 }

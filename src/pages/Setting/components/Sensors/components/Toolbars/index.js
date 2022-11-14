@@ -1,6 +1,7 @@
 import * as RB from 'react-bootstrap'
 import styles from './Toolbars.module.css'
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 function Toolbars (props) {
     return(
         <RB.Container className="d-flex m-2 p-2 "
@@ -19,13 +20,18 @@ function Toolbars (props) {
                     onClick={() => props.removeSensor()}
 
                 >Delete</RB.Button> 
+                
                 <RB.Button  
                     className = {styles.button}
                     onClick={()=> props.editSensor()}
                 >Edit</RB.Button>
-                <RB.Button  className = {styles.button} 
-                            variant="success"
-                >Add</RB.Button>  
+
+                <Link to="/field">
+                    <RB.Button  className = {styles.button} 
+                                variant="success"
+                    >Add</RB.Button>  
+                </Link>
+
             </RB.ButtonGroup>
          </RB.Container>
     )

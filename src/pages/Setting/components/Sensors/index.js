@@ -30,29 +30,34 @@ function Sensors() {
                 sensorID:'',
                 name:'',
                 type:'',
-                long: 0,
-                lat: 0,
+                coordinate:[]
             }
         ]
     })
+    // Record Change In Action of Every Sensor
+    // {key:value}, 'deleted'
+    const sensorChange  = useRef({})
 
-    const initSensorList = useRef(()=>sensors);
-    const [sensorList, setSensorList] = useState(() => sensors)
+    const [sensorList, setSensorList] = useState(() => {
+        sensors.forEach(sensor => {sensorChange.current[sensor['id']]=[]})
+        return sensors
+    })
+
     const [choose, setChoose] = useState(0)
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
     const [showForm, setShowForm] = useState(false)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(() => sensorList[0].long);
-    const [lat, setLat] = useState(() => sensorList[0].lat);
-    const [zoom, setZoom] = useState(9);
+    const [lng, setLng] = useState(() => sensorList[0].coordinate[0]);
+    const [lat, setLat] = useState(() => sensorList[0].coordinate[1]);
+    const [zoom, setZoom] = useState(12);
 
     useEffect(() => {
             if (map.current) return; // initialize map only once
             map.current = new mapboxgl.Map({
                 container: mapContainer.current,
-                style: 'mapbox://styles/mapbox/streets-v11',
+                style: 'mapbox://styles/mapbox/satellite-v9',
                 center: [lng, lat],
                 zoom: zoom
             });
@@ -71,13 +76,13 @@ function Sensors() {
         )
             .setLngLat([lng, lat])
             .addTo(map.current);
-    });
+    },[lng,lat]);
     
 
     // Move map when have change in lat and lng
     // Change OnClick or change in sensorList
     useEffect(() => {
-        handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
+        handleMoveMap(sensorList[choose].coordinate[0], sensorList[choose].coordinate[1])
 
         setSwitchSensor(sensorList[choose].mode)
     },[choose])
@@ -86,15 +91,15 @@ function Sensors() {
         if(sensorList.length){
             // If delete sensor between except last element
             if(0 <= choose && choose < sensorList.length-1)
-               handleMoveMap(sensorList[choose].long, sensorList[choose].lat)
+               handleMoveMap(sensorList[choose].coordinate[0], sensorList[choose].coordinate[1])
             else  {
                 if(sensorList.length > 1) {
                     const chooseAfterDelete = choose-1;
                     setChoose(chooseAfterDelete)
-                    handleMoveMap(sensorList[chooseAfterDelete].long, sensorList[chooseAfterDelete].lat)
+                    handleMoveMap(sensorList[chooseAfterDelete].coordinate[0], sensorList[chooseAfterDelete].coordinate[1])
                 } else {
                     setChoose(0)
-                    handleMoveMap(sensorList[0].long, sensorList[0].lat)
+                    handleMoveMap(sensorList[0].coordinate[0], sensorList[0].coordinate[1])
                 }     
             }
         }
@@ -105,7 +110,7 @@ function Sensors() {
     useEffect(() => {
         map.current.jumpTo({
             'center':[lng,lat],
-            'zoom':14
+            'zoom':15
          }
         )
     },[lng,lat]);
@@ -145,8 +150,9 @@ function Sensors() {
         const len = sensorList.length;
         if(len) {
             setSensorList(prev => [...prev.slice(0, choose), ...prev.slice(choose + 1)])
-            sensorForm.current.remove.push(sensorList[choose]);
-
+            const id = sensorList[choose]['id']
+            sensorChange.current[id].push('deleted')
+            console.log(sensorChange)
         }else {
             alert("There are no sensors left");
         }
@@ -183,8 +189,9 @@ function Sensors() {
                 <SensorDetail
                     choose={choose}
                     setSensorList = {setSensorList}
-                    sensorForm = {sensorForm}
                     sensorList={sensorList}
+                    sensorChange={sensorChange}
+                    showForm={showForm}
                 ></SensorDetail>
             }
 
@@ -216,8 +223,8 @@ function Sensors() {
                                         id = {sensor.id}
                                         type={sensor.type}
                                         mode={sensor.mode}
-                                        long = {sensor.long}
-                                        lat = {sensor.lat}
+                                        long = {sensor.coordinate[0]}
+                                        lat = {sensor.coordinate[1]}
                                     ></Sensor>
                                 </li>
                             )
