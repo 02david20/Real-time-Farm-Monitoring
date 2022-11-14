@@ -33,6 +33,8 @@ function Tasking() {
         }
     ]
     const [taskList, updateTaskList] = useState(tasks)
+    const [newestID, setNewestID] = useState(tasks.length+1)
+    const [pageNo, setPageNo] = useState(1)
     const { register, getValues, setValue } = useForm();
     const [openAddingTask, setOpenAddingTask] = useState(false)
     const [addOrEditTask, setAddOrEditTask] = useState(true)
@@ -53,7 +55,11 @@ function Tasking() {
         setOpenAddingTask(!openAddingTask)
     }
     const handleAddTask = () => {
-        let newTask = {id:taskList.length+1, name: getValues().section, time: {"day": 1, "hour": 10, "minute": 2}}
+        setNewestID((newestID) => newestID+1)
+        let newTask = { id:newestID, 
+                        name: getValues().name, 
+                        description: getValues().description,
+                        time: {"day": 1, "hour": 10, "minute": 2}}
         let newTaskList = taskList.concat(newTask)
         updateTaskList(newTaskList)
         setOpenAddingTask(!openAddingTask)
@@ -89,6 +95,22 @@ function Tasking() {
         return string_time
     }
 
+    function STasks() {
+        let i = 0
+        let tasklist = ""
+        for (i; i < 3; i++) {
+            let index = pageNo*3 + i
+            if (index >= taskList.length) break
+            tasklist += <Task taskinfo={taskList[index]} />
+            alert(JSON.stringify(<Task taskinfo={taskList[index]} />))
+        }
+        return tasklist
+    }
+
+    function ShowTasks() {
+        return taskList.map((task) => <Task taskInfo={task} />)
+    }
+
     function Task(props) {
         return (
             <li>
@@ -118,6 +140,18 @@ function Tasking() {
             </li>
         )
     }
+
+    const movePreviousPage = () => {
+        if (pageNo > 1) {
+            let newPageNo = pageNo - 1
+            setPageNo(newPageNo)        
+        }
+    }
+
+    const moveNextPage = () => {
+        let newPageNo = pageNo + 1
+        setPageNo(newPageNo)
+    }
     return (
         <div className='task'>
             <div className='area' id={openAddingTask ? "open" : "close"}>
@@ -132,7 +166,7 @@ function Tasking() {
                         </div>
                         <div className='task-list'>
                             <ul>
-                                {taskList.map((task) => <Task taskInfo={task} />)}
+                                <ShowTasks />
                             </ul>
                         </div>
                         <div className='numbering'>
@@ -140,13 +174,13 @@ function Tasking() {
                         </div>
                     </div>
                     <div className='show-add-task'>
-                        <button className='toPrevTaskList'>
+                        <button className='toPrevTaskList' onClick={movePreviousPage}>
                             &lt;
                         </button>
                         <div>
-                            Trang 1
+                            Trang {pageNo}
                         </div>
-                        <button className='toNextTaskList'>
+                        <button className='toNextTaskList' onClick={moveNextPage}>
                             &gt;
                         </button>
                     </div>
