@@ -73,7 +73,50 @@ function Setting_pump() {
             <div>
                 Longtitude: {lng} | Latitude: {lat}
             </div>
-            <div ref={mapContainer} className='map-container'></div>
+            <div ref={mapContainer} className='map-container'>
+                <div className='pump-detail'>
+                    <div className='leftSide'>
+                        <div className='show-id'>
+                            <div>ID</div>
+                            <div className='id'>01750175</div>
+                        </div>
+                        <div className='show-water-remain'>
+                            <div className='text'>Lượng nước còn lại</div>
+                            <div className='full'>
+                                <div className='water-remain'>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className='setting-water'>
+                            <div className='text'>
+                                Thiết lập lượng nước tưới
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className='rightSide'>
+                        <div className='start-time'>
+                            <label for='start'>Từ:</label>
+                            <input type='datetime-local' name='start'></input>
+                        </div>
+                        <div className='end-time'>
+                            <label for='end'>Đến:</label>
+                            <input type='datetime-local' name='end'></input>
+                        </div>
+                        <div>
+                            <select>
+                                <option default>Không lặp</option>
+                                <option>Hằng ngày</option>
+                                <option>Hằng tuần</option>
+                                <option>Hằng tháng</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

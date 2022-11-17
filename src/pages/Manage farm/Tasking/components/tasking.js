@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Icon } from '@iconify/react'
 import './tasking.scss'
-import data from './data.json'
 
 function Tasking() {
     // task data
@@ -201,13 +200,13 @@ function Tasking() {
                             </div>
                             <div className='rightside'>
                                 <div>
-                                    <label for='date'>Chọn ngày:</label>
-                                    <input type='date' name='date'></input>
-                                    <div className='set-time'>
+                                    <div className='start-time'>
                                         <label for='start'>Từ:</label>
-                                        <input type='time' name='start'></input>
+                                        <input type='datetime-local' name='start'></input>
+                                    </div>
+                                    <div className='end-time'>
                                         <label for='end'>Đến:</label>
-                                        <input type='time' name='end'></input>
+                                        <input type='datetime-local' name='end'></input>
                                     </div>
                                     <div>
                                         <select>
