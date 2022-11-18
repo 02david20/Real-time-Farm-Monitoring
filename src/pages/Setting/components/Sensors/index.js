@@ -1,6 +1,7 @@
 import Sensor from './components/Sensor'
 import Toolbars from './components/Toolbars'
 import SensorDetail from './components/SensorDetail'
+import AddingForm from './components/AddingForm'
 
 
 import Row from 'react-bootstrap/Row'
@@ -46,9 +47,11 @@ function Sensors() {
     const [choose, setChoose] = useState(0)
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
     const [showForm, setShowForm] = useState(false)
+    const [showAdd, setShowAdd] = useState(false)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
+    const marker = useRef(null);
     const [lng, setLng] = useState(() => sensorList[0].coordinate[0]);
     const [lat, setLat] = useState(() => sensorList[0].coordinate[1]);
     const [zoom, setZoom] = useState(12);
@@ -61,19 +64,15 @@ function Sensors() {
                 center: [lng, lat],
                 zoom: zoom
             });
+            marker.current = new mapboxgl.Marker()
+                .setLngLat([lng, lat])
+                .addTo(map.current);
     });
 
     // Add Marker on
     useEffect(() => {
-        const marker = new mapboxgl.Marker(
-            <div
-            style={{
-              width: '5rem',
-              height: '5rem',
-              borderRadius: '50%',
-              cursor: 'pointer',
-            }} />
-        )
+        marker.current.remove(); 
+        marker.current = new mapboxgl.Marker()
             .setLngLat([lng, lat])
             .addTo(map.current);
     },[lng,lat]);
@@ -137,6 +136,7 @@ function Sensors() {
 
         // Call Change API
         console.log(sensorForm)
+        console.log(sensorChange);
     }
 
     // Change lng, lat to new location
@@ -163,7 +163,7 @@ function Sensors() {
         setShowForm(prev => !prev)
     }
     const handleAddSensor = () => {
-        
+        setShowAdd(prev => !prev)
     }
 
     
@@ -191,10 +191,19 @@ function Sensors() {
                     setSensorList = {setSensorList}
                     sensorList={sensorList}
                     sensorChange={sensorChange}
-                    showForm={showForm}
+                    setShowForm={setShowForm}
                 ></SensorDetail>
             }
 
+            {   showAdd &&
+                <AddingForm
+                    choose={choose}
+                    setSensorList = {setSensorList}
+                    sensorList={sensorList}
+                    sensorChange={sensorChange}
+                    setShowForm={setShowAdd}
+                ></AddingForm>
+            }
 
             <Row style={{height:"inherit"}}>
                 <Col xs={3}
@@ -209,7 +218,7 @@ function Sensors() {
 
                         {sensorList.map((sensor,index) => {
                             return (
-                                <li key = {sensor.id}
+                                <li key = {index}
                                     className="list-group-item mt-2"
                                     style={{
                                         borderRadius:"2px", 

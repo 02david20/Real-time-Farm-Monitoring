@@ -1,21 +1,57 @@
 import {useForm} from 'react-hook-form'
+import { baseSensor , checkIndex} from '../../../../../../services/sensor';
+function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowForm}) {
+    // If there is no choose means It will add new value
+    // If there is no sensorChange means It is new Sensor
 
-function SensorDetail({choose, setSensorList, sensorList, sensorChange, showForm}) {
     const { register, getValues } = useForm();
-    const sensor =  sensorList[choose]
+
+    const sensor =  choose >= 0 ? sensorList[choose] : baseSensor 
+
     const handleSubmit = () => {
-      const values = getValues(); // { test: "test-input", test1: "test1-input" }
-      const id = sensor.id
-      if(parseFloat(values['long']) !== sensor['coordinate'][0])
-        sensorChange.current[id].push({long:parseFloat(values.long)})
-      if(parseFloat(values['lat']) !== sensor['coordinate'][1])
-        sensorChange.current[id].push({lat:parseFloat(values.lat)})
-      if(values['name'] !== sensor['name'])
-        sensorChange.current[id].push({name:values['name']})
-      if(values['type'] !== sensor['type'])
-        sensorChange.current[id].push({name:values['name']})
+
+        const values = getValues(); // { test: "test-input", test1: "test1-input" }
+        const id = sensor.id
+
+        if(parseFloat(values['long']) !== sensor['coordinate'][0]) {
+          const value = parseFloat(values.long);
+          if(sensorChange) 
+            sensorChange.current[id].push({long:value})
+          sensor['coordinate'][0] = value
+        }
+        if(parseFloat(values['lat']) !== sensor['coordinate'][1]) {
+          const value = parseFloat(values.lat);
+          if(sensorChange) 
+            sensorChange.current[id].push({lat:value})
+          sensor['coordinate'][1] = value
+        }
+        if(values['name'] !== sensor['name']) {
+          const value = values.name;
+          if(sensorChange) 
+            sensorChange.current[id].push({name:value})
+          sensor['name'] = value
+        }
+        if(values['type'] !== sensor['type']) {
+          const value = values.type;
+          if(sensorChange) 
+            sensorChange.current[id].push({type:value})
+          sensor['type'] = value
+        }
+      
+      if(choose >= 0)
+        // If sensor exist
+        setSensorList(prev => [...prev.slice(0,choose),sensor,...prev.slice(choose+1)])
+      else {
+        // If sensor Not exist
+        setSensorList(prev => [...prev,sensor])
+      }
+
+        setShowForm(prev => !prev)
     }
 
+    const handleCancel = () => {
+      setShowForm(prev => !prev)
+    }
     return (
       <form style={{
         backgroundColor: "white",
@@ -27,7 +63,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, showForm
       }}
       onSubmit={e => { e.preventDefault(); }} // Disable Submission to handle Form Input
       >
-        <h2>{sensor.id}</h2>
+        <h2>{sensor.id?"New Sensor":sensor.id}</h2>
 
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -77,10 +113,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, showForm
         <div className='row mt-2 gap-4'>
           <button
             className='col btn btn-danger'
-            onClick={() => {
-              const values = getValues(); // { test: "test-input", test1: "test1-input" }
-              console.log(values);
-            }}
+            onClick={() => handleCancel()}
 
           >
             Hủy
