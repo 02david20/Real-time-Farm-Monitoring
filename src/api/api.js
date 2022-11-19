@@ -5,8 +5,7 @@ const sensors = [
         type: "temp",
         data: 36,
         mode:'active',
-        long: -70.39,
-        lat: 43.35
+        coordinate:[ -91.8980505,42.7685108 ],
     },
     {
         id : 2,
@@ -14,8 +13,7 @@ const sensors = [
         type: "temp",
         data: 37,
         mode:'disable',
-        long: -70.39,
-        lat: 44.35
+        coordinate:[ -91.8826869,42.7619575 ]
 
     },
     {
@@ -24,8 +22,7 @@ const sensors = [
         type: "moist",
         data: 20,
         mode:'active',
-        long: -70.39,
-        lat: 45.35
+        coordinate:[ -91.8986514,42.7612644 ]
 
     },
     {
@@ -34,11 +31,27 @@ const sensors = [
         type: "moist",
         data: 25,
         mode:'active',
-        long: -70.39,
-        lat: 46.35
+        coordinate:[ -91.8796828,42.7692669 ]
 
     },
-    
+    {
+        id : 5,
+        name: '1',
+        type: "moist",
+        data: 25,
+        mode:'active',
+        coordinate:[ -91.8496828,42.7692669 ]
+
+    },
+    {
+        id : 6,
+        name: '1',
+        type: "moist",
+        data: 25,
+        mode:'active',
+        coordinate:[ -91.8296828,42.7692669 ]
+
+    }    
 ]
 const availableSensors = [
     {
@@ -46,8 +59,7 @@ const availableSensors = [
         type: "moist",
         data: 25,
         mode:'active',
-        long: 50,
-        lat: 100
+        coordinate:[-91.874-1, 42.76+2]
     }
 ]
 export  {sensors,availableSensors}
