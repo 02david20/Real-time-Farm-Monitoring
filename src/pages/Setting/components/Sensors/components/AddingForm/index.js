@@ -13,9 +13,9 @@ function renderSensor(arr, choose, setChoose) {
             <div 
                 style={{
                     backgroundColor:"green",
-                    overflowY:"scroll",
+                    overflowY:"scroll !important",
                     cursor:"pointer",
-                    height:'100%'
+                    height:'80%'
                 }}
             >
 
@@ -27,14 +27,6 @@ function renderSensor(arr, choose, setChoose) {
 
         return (
                 <ol className="list-group"
-                        style={{
-                            backgroundColor:"green",
-                            overflowY:"hidden",
-                            cursor:"pointer",
-                            padding: '10px',
-                            height:"100%",
-                            listStylePosition: 'inside',
-                        }}
                     >
 
                         {arr.map((sensor,index) => {
@@ -50,11 +42,7 @@ function renderSensor(arr, choose, setChoose) {
                                     }}
                                 >
                                     <Sensor
-                                        id = {sensor.id}
-                                        type={sensor.type}
-                                        mode={sensor.mode}
-                                        long = {sensor.coordinate[0]}
-                                        lat = {sensor.coordinate[1]}
+                                        sensor = {sensor}
                                     ></Sensor>
                                 </li>
                             )
@@ -75,7 +63,10 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
     const [showNew, setShowNew] = useState(false)
 
     const handleSubmit = () => {
-
+        // Update SensorList
+        addSensors.forEach(elem => {elem["new"]=true})
+        setSensorList(prev => [...prev, ...addSensors])
+        console.log(addSensors);
         setShowForm(prev => !prev)
     }
 
@@ -120,7 +111,8 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
                 left: '64px',
             }}
         >
-            {   showNew &&
+            {   
+                showNew &&
                 <SensorDetail
                     choose={-1}
                     setSensorList = {setAbleSensors}
@@ -134,7 +126,15 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
                     
                 ></Col>
 
-                <Col xs={3}                    
+                <Col xs={3}  
+                    className = "hideScroll"
+                    style={{
+                        backgroundColor:"green",
+                        overflowY:"scroll",
+                        cursor:"pointer",
+                        padding: '10px',
+                        height:"80%",
+                    }}                  
                 >
                     {renderSensor(ableSensors,lchoose, setLChoose)}
                 </Col>
@@ -162,7 +162,15 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
                     
                 </Col>
 
-                <Col xs={3}                    
+                <Col xs={3}   
+                    className = "hideScroll"
+                    style={{
+                        backgroundColor:"green",
+                        overflowY:"scroll",
+                        cursor:"pointer",
+                        padding: '10px',
+                        height:"80%",
+                    }}                  
                 >
                     {renderSensor(addSensors,rchoose, setRChoose)}
                 </Col>

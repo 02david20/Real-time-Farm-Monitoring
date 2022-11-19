@@ -7,6 +7,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
     const { register, getValues } = useForm();
 
     const sensor =  choose >= 0 ? sensorList[choose] : baseSensor 
+    const isNew = choose >= 0 ? sensorList[choose].hasOwnProperty("new") : true;
 
     const handleSubmit = () => {
 
@@ -15,25 +16,25 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
 
         if(parseFloat(values['long']) !== sensor['coordinate'][0]) {
           const value = parseFloat(values.long);
-          if(sensorChange) 
+          if(sensorChange && !isNew) 
             sensorChange.current[id].push({long:value})
           sensor['coordinate'][0] = value
         }
         if(parseFloat(values['lat']) !== sensor['coordinate'][1]) {
           const value = parseFloat(values.lat);
-          if(sensorChange) 
+          if(sensorChange && !isNew) 
             sensorChange.current[id].push({lat:value})
           sensor['coordinate'][1] = value
         }
         if(values['name'] !== sensor['name']) {
           const value = values.name;
-          if(sensorChange) 
+          if(sensorChange && !isNew) 
             sensorChange.current[id].push({name:value})
           sensor['name'] = value
         }
         if(values['type'] !== sensor['type']) {
           const value = values.type;
-          if(sensorChange) 
+          if(sensorChange && !isNew) 
             sensorChange.current[id].push({type:value})
           sensor['type'] = value
         }
@@ -46,7 +47,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
         setSensorList(prev => [...prev,sensor])
       }
 
-        setShowForm(prev => !prev)
+      setShowForm(prev => !prev)
     }
 
     const handleCancel = () => {
@@ -63,7 +64,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
       }}
       onSubmit={e => { e.preventDefault(); }} // Disable Submission to handle Form Input
       >
-        <h2>{sensor.id?"New Sensor":sensor.id}</h2>
+        <h2>{sensor.id?sensor.id:"New Sensor"}</h2>
 
         <div className="form-group">
           <label htmlFor="name">Name</label>

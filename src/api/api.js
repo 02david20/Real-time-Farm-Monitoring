@@ -38,13 +38,6 @@ const sensors = [
 ]
 const availableSensors = [
     {
-        id : 4,
-        type: "moist",
-        data: 25,
-        mode:'active',
-        coordinate:[-91.874-1, 42.76+2]
-    },
-    {
         id : 5,
         type: "moist",
         data: 25,
