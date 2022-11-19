@@ -1,4 +1,3 @@
-
 import { Icon } from '@iconify/react';
 function Sensor({sensor}) {
     const handleSensorState = (mode) => {
