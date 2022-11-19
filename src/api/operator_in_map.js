@@ -9,7 +9,7 @@ import mapboxgl from "mapbox-gl";
 // import mapboxgl from '!mapbox-gl';
 import { useRef, useEffect, useState } from 'react';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import {sensors} from "../../api/api";
+import {sensors} from "./api";
 import Container from 'react-bootstrap/Container';
 import {map, draw} from "../pages/Home/index.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
