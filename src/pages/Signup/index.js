@@ -2,10 +2,10 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 
 import Logo from "../../assets/images/Logo.png";
 import styles from "./signup.module.css";
-
+import clsx from "clsx";
 function Signup() {
   return (
-    <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class={clsx("vh-100 d-flex justify-content-center align-items-center",styles.bg)}>
       <div class="col-md-3 me-3">
         <img src={Logo} alt="" />
       </div>
