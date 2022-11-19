@@ -1,13 +1,13 @@
 import {Routes, Route} from 'react-router-dom'
 
 import './App.css';
-import {DefaultLayout} from './components/Layouts'
 import Global from './components/Global';
 import {publicRoutes} from './routes'
+import {DefaultLayout} from './components/Layouts'
 import { Fragment } from 'react';
 
-
 function App() {
+
   return (
     <div className="App">
       <Global>    

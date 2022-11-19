@@ -1,20 +1,20 @@
 import Header from "../components/Header";
-import UserSidebar from "../components/UserSidebar";
-import styles from "./DefaultLayout.module.css";
+import UserSidebar from "../components/UserSidebar"
 
-function DefaultLayout({ children }) {
-  return (
-    <div>
-      {/*<Header></Header>*/}
+function DefaultLayout({children}) {
 
-      <UserSidebar></UserSidebar>
+    return ( 
+        <div>        
+            <Header>
+            </Header>
 
-      <div className={styles.container}>
-        <div className={styles.content}>{children}</div>
-      </div>
-    </div>
-  );
-
+            <UserSidebar></UserSidebar>
+           
+            <div className="container">
+                <div className = "content">{children}</div>
+            </div>
+        </div>
+    );
 }
 
 export default DefaultLayout;
