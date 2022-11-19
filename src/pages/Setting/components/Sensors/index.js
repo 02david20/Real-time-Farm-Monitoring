@@ -1,6 +1,7 @@
 import Sensor from './components/Sensor'
 import Toolbars from './components/Toolbars'
 import SensorDetail from './components/SensorDetail'
+import AddingForm from './components/AddingForm'
 
 
 import Row from 'react-bootstrap/Row'
@@ -22,18 +23,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNuc
 
 function Sensors() {
     const sensorForm  = useRef({
-        userName:'',
-        add : [''],
-        remove: [''],
-        modify:[
-            {
-                sensorID:'',
-                name:'',
-                type:'',
-                coordinate:[]
-            }
-        ]
+        add : [],
+        remove: [],
+        modify:{} 
     })
+
     // Record Change In Action of Every Sensor
     // {key:value}, 'deleted'
     const sensorChange  = useRef({})
@@ -46,9 +40,11 @@ function Sensors() {
     const [choose, setChoose] = useState(0)
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
     const [showForm, setShowForm] = useState(false)
+    const [showAdd, setShowAdd] = useState(false)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
+    const marker = useRef(null);
     const [lng, setLng] = useState(() => sensorList[0].coordinate[0]);
     const [lat, setLat] = useState(() => sensorList[0].coordinate[1]);
     const [zoom, setZoom] = useState(12);
@@ -61,19 +57,15 @@ function Sensors() {
                 center: [lng, lat],
                 zoom: zoom
             });
+            marker.current = new mapboxgl.Marker()
+                .setLngLat([lng, lat])
+                .addTo(map.current);
     });
 
     // Add Marker on
     useEffect(() => {
-        const marker = new mapboxgl.Marker(
-            <div
-            style={{
-              width: '5rem',
-              height: '5rem',
-              borderRadius: '50%',
-              cursor: 'pointer',
-            }} />
-        )
+        marker.current.remove(); 
+        marker.current = new mapboxgl.Marker()
             .setLngLat([lng, lat])
             .addTo(map.current);
     },[lng,lat]);
@@ -115,11 +107,15 @@ function Sensors() {
         )
     },[lng,lat]);
 
+    // Change State of sensor (on/off)
     const handleSwitch = () => {
+        if(sensorList[choose].hasOwnProperty("new"))
+            return;
         if(switchSensor === "active") {
             setSwitchSensor("disable")
             setSensorList(prev => {
                 prev[choose].mode='disable'
+                sensorChange.current[choose].push({mode:"disable"})
                 return prev;
             })
         }
@@ -127,15 +123,43 @@ function Sensors() {
             setSwitchSensor("active")
             setSensorList(prev => {
                 prev[choose].mode='active'
+                sensorChange.current[choose].push({mode:"active"})
                 return prev;
             })
         }
     }
 
-    const handleSubmitChange = () => {
-        // Compare State of sensorList and initSensorList
 
-        // Call Change API
+    // Submit the setting of user
+    const handleSubmitChange = () => {
+        // New Sensor Added
+        sensorList.forEach(elem => {
+            if(elem.hasOwnProperty("new"))  
+                sensorForm.current.add.push(elem)
+        })
+        // Check Sensor Change
+        Object.entries(sensorChange.current).forEach(([id,change])=> {
+            if(change.length) {
+                if(change[change.length-1]=="deleted") {
+                    // If has deleted than add to remove array and break
+                    sensorForm.current.remove.push(id)
+                }else {
+                    // Update The Change
+                    const modify = {}
+                    let key
+                    for (let i = change.length-1; i >=0 ; i--) {
+                        key = Object.keys(change[i])[0]
+                        if(modify.hasOwnProperty(key)) {
+                            continue;
+                        }else {
+                            modify[key] = change[i][key]
+                        }
+                    }
+                    sensorForm.current.modify[id] = modify
+                }
+            }
+        })
+
         console.log(sensorForm)
     }
 
@@ -145,14 +169,16 @@ function Sensors() {
         setLat(lat)
         setZoom(20)
     }
+
     // Xóa một sensor
     const handleRemoveSensor = () => {
         const len = sensorList.length;
         if(len) {
             setSensorList(prev => [...prev.slice(0, choose), ...prev.slice(choose + 1)])
             const id = sensorList[choose]['id']
-            sensorChange.current[id].push('deleted')
-            console.log(sensorChange)
+            const isNew = sensorList[choose].hasOwnProperty("new")
+            if(!isNew)
+                sensorChange.current[id].push('deleted')
         }else {
             alert("There are no sensors left");
         }
@@ -163,12 +189,12 @@ function Sensors() {
         setShowForm(prev => !prev)
     }
     const handleAddSensor = () => {
-        
+        setShowAdd(prev => !prev)
     }
 
     
     return (
-        <div>
+        <div style={{height:"100vh"}}>
             <div className="btn btn-success"
                  style = {{
                     position: 'fixed',
@@ -185,31 +211,42 @@ function Sensors() {
                  addSensor = {handleAddSensor}
             ></Toolbars>
 
-            {   showForm &&
+            {   
+                // If It is new sensor added then just modify info and not modify sensorChange
+                showForm &&
                 <SensorDetail
                     choose={choose}
                     setSensorList = {setSensorList}
                     sensorList={sensorList}
                     sensorChange={sensorChange}
-                    showForm={showForm}
+                    setShowForm={setShowForm}
                 ></SensorDetail>
             }
 
+            {   showAdd &&
+                <AddingForm
+                    choose={choose}
+                    setSensorList = {setSensorList}
+                    sensorList={sensorList}
+                    sensorChange={sensorChange}
+                    setShowForm={setShowAdd}
+                ></AddingForm>
+            }
 
-            <Row style={{height:"inherit"}}>
+            <Row style={{height:'75vh'}}>
                 <Col xs={3}
-                    className="hideScroll"
+                    className="overflow-auto"
                     style={{
                         backgroundColor:"green",
-                        overflow:"scroll",
-                        cursor:"pointer"
+                        cursor:"pointer",
+                        maxHeight:'75vh'
                     }}
                 >
                     <ol className="list-group">
 
                         {sensorList.map((sensor,index) => {
                             return (
-                                <li key = {sensor.id}
+                                <li key = {index}
                                     className="list-group-item mt-2"
                                     style={{
                                         borderRadius:"2px", 
@@ -220,11 +257,7 @@ function Sensors() {
                                     }}
                                 >
                                     <Sensor
-                                        id = {sensor.id}
-                                        type={sensor.type}
-                                        mode={sensor.mode}
-                                        long = {sensor.coordinate[0]}
-                                        lat = {sensor.coordinate[1]}
+                                        sensor = {sensor}
                                     ></Sensor>
                                 </li>
                             )
@@ -247,7 +280,7 @@ function Sensors() {
 
                         <Form.Switch
                             id="custom-switch"
-                            checked = {switchSensor==="active"}
+                            checked = {(switchSensor==="active" ? true: false)}
                             onChange = {handleSwitch}
                         >
                         </Form.Switch> 

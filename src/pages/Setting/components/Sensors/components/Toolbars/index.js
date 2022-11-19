@@ -26,12 +26,12 @@ function Toolbars (props) {
                     onClick={()=> props.editSensor()}
                 >Edit</RB.Button>
 
-                <Link to="/field">
-                    <RB.Button  className = {styles.button} 
-                                variant="success"
-                    >Add</RB.Button>  
-                </Link>
-
+            
+                <RB.Button  className = {styles.button} 
+                            variant="success"
+                            onClick={() => props.addSensor()}
+                >Add</RB.Button>  
+           
             </RB.ButtonGroup>
          </RB.Container>
     )
