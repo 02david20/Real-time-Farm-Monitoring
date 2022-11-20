@@ -14,7 +14,7 @@
 .map-container {
     height: 600px;
 
-    .pump-detail {
+    .info-container {
         position: absolute;
         background-color: #EDF5E1;
         height: 500px;
@@ -22,62 +22,116 @@
         z-index: 1;
         margin: 50px 60px;
         font-size: 30px;
-        display: flex;
 
-        .leftSide {
-            padding-left: 50px;
-            padding-top: 50px;
-
-            .show-id {
-                display: flex;
-                padding-bottom: 40px;
-
-                div {
-                    padding: 10px 0px;
-                }
-
-                .id {
-                    background-color: white;
-                    padding: 10px 10px;
-                    margin-left: 20px;
-                }
-            }
-
-            .show-water-remain {
-                padding-bottom: 40px;
-
-                .text {
+        .pump-detail {
+            display: flex;
+    
+            .leftSide {
+                padding-left: 50px;
+                padding-top: 50px;
+    
+                .show-id {
+                    display: flex;
                     padding-bottom: 40px;
-                    text-align: left;
+    
+                    div {
+                        padding: 10px 0px;
+                    }
+    
+                    .id {
+                        background-color: white;
+                        padding: 10px 10px;
+                        margin-left: 20px;
+                    }
                 }
-                .full {
-                    width: 400px;
-                    height: 50px;
-                    background-color: white;
-
-                    .water-remain {
-                        background-color: #87CEEB;
-                        width: 80%;
+    
+                .show-water-remain {
+                    padding-bottom: 40px;
+    
+                    .text {
+                        padding-bottom: 40px;
+                        text-align: left;
+                    }
+                    .full {
+                        width: 400px;
                         height: 50px;
+                        background-color: white;
+    
+                        .water-remain {
+                            background-color: #87CEEB;
+                            width: 80%;
+                            height: 50px;
+                        }
+                    }
+                }
+    
+                .setting-water {
+                    display: flex;
+    
+                    div {
+                        padding: 10px 0px;
+                    }
+    
+                    .text {
+                        text-align: left;
+    
+                        input {
+                            margin-left: 20px;
+                            width: 120px;
+                        }
                     }
                 }
             }
-
-            .setting-water {
-                display: flex;
-
-                div {
-                    padding: 10px 0px;
+    
+            .rightSide {
+                text-align: left;
+                padding-left: 50px;
+                
+                input {
+                    margin-left: 20px;
+                    padding: 5px;
                 }
 
-                .text {
-                    text-align: left;
+                .start-time {
+                    padding: 20px 20px;
+                }
+    
+                .end-time {
+                    padding: 20px 20px;
+                }
+    
+                select {
+                    margin: 20px 20px;
+                    padding: 5px 5px;
                 }
             }
         }
 
-        .rightSide {
-            text-align: left;
+        .buttons {
+            display: flex;
+            margin-top: 80px;
+            text-align: center;
+            padding-left: 450px;
+            button {
+                border: none;
+                height: 50px;
+                width: 150px;
+                border-radius: 10px;
+            }
+
+            .back {
+                background-color: #D9D9D9;
+            }
+
+            .update {
+                background-color: #05386B;
+                color: white;
+                margin-left: 100px;
+            }
         }
     }
+}
+
+.map-container #close {
+    display: none;
 }
