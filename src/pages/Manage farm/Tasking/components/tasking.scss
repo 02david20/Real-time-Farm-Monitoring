@@ -98,6 +98,7 @@
                             margin: 0;
                             border: none;
                             background-color: #f9f9f9;
+                            color: black;
                         }
                         
                         .option:hover .option-content {
@@ -114,6 +115,9 @@
             font-size: 30px;
 
             button {
+                background-color: rgb(244, 242, 246);
+                color: black;
+                border: 1px solid black;
                 margin: 0px 30px;
                 padding: 0px 10px;
             }

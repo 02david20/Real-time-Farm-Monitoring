@@ -66,7 +66,9 @@ function Setting_pump() {
             ref.current = document.createElement("div")
             const root = createRoot(ref.current)
             root.render(
-                <Marker onClick={markerClicked} pumpInfo={pump}/>
+                <Marker onClick={markerClicked} pumpInfo={pump}>
+                    <Icon icon="icon-park:breast-pump" className='pump-image'/>
+                </Marker>
             )
 
             new mapboxgl.Marker(ref.current)
@@ -115,9 +117,6 @@ function Setting_pump() {
 
     return (
         <div>
-            <div>
-                Longtitude: {lng} | Latitude: {lat}
-            </div>
             <div ref={mapContainer} className='map-container'>
                 <div className='info-container' id={showDetail ? "open" : "close"}>
                     <div className='pump-detail'>
