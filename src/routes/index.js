@@ -1,3 +1,4 @@
+import React from "react";
 // Import Layout
 
 // Import Route Pages
@@ -10,7 +11,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Forumn from "../pages/Forumn"
-
+const Dashboard = React.lazy(() => import("../pages/Dashboard"))
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
@@ -23,7 +24,8 @@ const publicRoutes = [
   { path: "/field/setting", component: Setting },
   { path: "/field", component: Home },
   { path: "/history", component: History },
-  { path: "/history", component: Forumn }
+  { path: "/history", component: Forumn },
+  { path: "/field/dashboard", component: Dashboard }
 ];
 
 //Require Login
