@@ -1,46 +1,59 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ReactMapboxGl from "react-mapbox-gl";
-import DrawControl from "react-mapbox-gl-draw";
-import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
-import "mapbox-gl/dist/mapbox-gl.css";
-import "@mapbox/mapbox-gl-supported";
+// import {set_up_map} from "../../api/operator_in_map.js"
+import { useRef, useEffect, useState } from 'react'
+import Container from 'react-bootstrap/Container'
 import mapboxgl from "mapbox-gl";
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+import {Draw_icon_sensor_type} from '../../api/operator_in_map';
 // import "./styles.css";
 // npm cache clean --force
 // document: https://github.com/amaurym/react-mapbox-gl-draw
 // polygon https://codesandbox.io/s/mapbox-polygon-forked-qcu4om?file=/src/index.js
-
-const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNucGMydGhnNHNheCJ9.CaiZuHejM4TIVmh4KnMpaw",
-});
-const onDrawCreate = ({ features }) => {
-  console.log(features);
-  let k = features[0].geometry.coordinates;
-  console.log(k[0]);
-};
-
-const onDrawUpdate = ({ features }) => {
-  console.log(features);
-};
-
+mapboxgl.accessToken = "pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNucGMydGhnNHNheCJ9.CaiZuHejM4TIVmh4KnMpaw";
+var map = [];
+var draw = [];
 function HomePage() {
-  return (
-    <div>
-      <Map
-        style="mapbox://styles/mapbox/satellite-v9" // eslint-disable-line
-        center={[-91.874, 42.76]}
-        containerStyle={{
-          height: "600px",
-          // width: "100vw"
-        }}
-        zoom={[12]}
-      >
-        <DrawControl onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate} />
-      </Map>
-    </div>
-  );
-}
+    const mapContainer = useRef(null);
+    map = useRef(null);
+    // const map = useRef(null);
+    const [lng, setLng] = useState(-91.874);
+    const [lat, setLat] = useState(42.76);
+    const [zoom, setZoom] = useState(13);
 
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            center: [lng, lat],
+            zoom: zoom
+        });
+    });
+
+    draw = useRef(null);
+    useEffect(() => {
+        if (draw.current) return;
+        draw.current = new MapboxDraw({
+            displayControlsDefault: false,
+            // Select which mapbox-gl-draw control buttons to add to the map.
+            controls: {
+                polygon: true,
+                trash: true
+            },
+            id: 'draw0',
+            // Set mapbox-gl-draw to draw by default.
+            // The user does not have to click the polygon control button first.
+            defaultMode: 'draw_polygon'
+        });
+        
+    });
+
+    useEffect(() => Draw_icon_sensor_type());
+
+    return(
+        <div ref={mapContainer} style={{height:"700px"}}>
+
+        </div>
+    );
+}
 export default HomePage;
+export {map, draw};

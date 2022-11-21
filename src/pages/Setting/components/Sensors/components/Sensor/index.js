@@ -1,6 +1,5 @@
-
 import { Icon } from '@iconify/react';
-function Sensor(props) {
+function Sensor({sensor}) {
     const handleSensorState = (mode) => {
         if(mode ==="active")
             return <Icon icon="fluent-emoji-flat:green-circle" />
@@ -14,12 +13,12 @@ function Sensor(props) {
     return(
         <div className=" d-flex justify-content-between  ">
             <div className="ms-2">
-                {props.id}
+                {sensor.id}
             </div>
 
             <div>
                 {
-                   handleSensorState(props.mode)
+                   handleSensorState(sensor.hasOwnProperty('new')?"":sensor.mode)
                 }
             </div>
         </div>
