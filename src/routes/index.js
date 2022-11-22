@@ -1,5 +1,5 @@
 // Import Layout
-
+import { ManageFarmLayout } from "../components/Layouts";
 // Import Route Pages
 
 import Tasking from "../pages/Manage farm/Tasking";
@@ -16,9 +16,9 @@ const publicRoutes = [
   { path: "/", component: Login, layout: null },
   { path: "/login", component: Login, layout: null },
   { path: "/signup", component: Signup, layout: null },
-  { path: "/manage_farm", component: Tasking },
-  { path: "/manage_farm/tasking", component: Tasking },
-  { path: "/manage_farm/setting-pump", component: Setting_pump },
+  { path: "/manage_farm", component: Tasking, layout: ManageFarmLayout },
+  { path: "/manage_farm/tasking", component: Tasking, layout: ManageFarmLayout },
+  { path: "/manage_farm/setting-pump", component: Setting_pump, layout: ManageFarmLayout },
   { path: "/field/setting", component: Setting },
   { path: "/field", component: Home },
   { path: "/history", component: History },

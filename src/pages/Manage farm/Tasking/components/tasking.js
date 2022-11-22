@@ -10,25 +10,33 @@ function Tasking() {
             id: 1,
             name: "Công việc 1",
             description: "Là công việc đấy", 
-            time: {"day": 0, "hour": 0, "minute": 57}
+            time: {"day": 0, "hour": 0, "minute": 57},
+            start_time: "2022-12-01T01:15",
+            end_time: "2022-12-10T04:42"
         },
         {
             id: 2,
             name: "Công việc 2",
             description: "Về nhà trồng rau nuôi cá",  
-            time: {"day": 0, "hour": 2, "minute": 34}
+            time: {"day": 0, "hour": 2, "minute": 34},
+            start_time: "2022-12-02T12:08",
+            end_time: "2022-12-14T16:01"
         },
         {
             id: 3,
             name: "Công việc 3", 
             description: "Mang tiền về cho mẹ", 
-            time: {"day": 0, "hour": 3, "minute": 16}
+            time: {"day": 0, "hour": 3, "minute": 16},
+            start_time: "2022-12-02T10:58",
+            end_time: "2022-12-18T20:11"
         },
         {
             id: 4,
             name: "Công việc 4",
             description: "Đừng mang ưu phiền về cho mẹ",  
-            time: {"day": 1, "hour": 10, "minute": 2}
+            time: {"day": 1, "hour": 10, "minute": 2},
+            start_time: "2022-12-04T11:00",
+            end_time: "2022-12-22T18:23"
         }
     ]
     const [taskList, updateTaskList] = useState(tasks)
@@ -47,9 +55,13 @@ function Tasking() {
         setAddOrEditTask(false)
         let id = e.target.getAttribute("id"), 
             name = e.target.getAttribute('name'), 
-            description = e.target.getAttribute('description')
+            description = e.target.getAttribute('description'),
+            start_time = e.target.getAttribute('start_time'),
+            end_time = e.target.getAttribute('end_time')
         setValue('name', name)
         setValue('description', description)
+        setValue('start_time', start_time)
+        setValue('end_time', end_time)
         setIdOfEditedTask(id)
         setOpenAddingTask(!openAddingTask)
     }
@@ -58,7 +70,9 @@ function Tasking() {
         let newTask = { id:newestID, 
                         name: getValues().name, 
                         description: getValues().description,
-                        time: {"day": 1, "hour": 10, "minute": 2}}
+                        time: {"day": 1, "hour": 10, "minute": 2},
+                        start_time: getValues().start_time,
+                        end_time: getValues().end_time }
         let newTaskList = taskList.concat(newTask)
         updateTaskList(newTaskList)
         setOpenAddingTask(!openAddingTask)
@@ -66,6 +80,9 @@ function Tasking() {
     const handleRemoveTask = (e) => {
         let id = e.target.getAttribute("id")
         updateTaskList(taskList.filter(task => task.id != id))
+        if (taskList.length % 4 == 1) {
+            movePreviousPage()
+        }
     }
     const denyAddTask = () => {
         setOpenAddingTask(!openAddingTask)
@@ -79,6 +96,8 @@ function Tasking() {
                 const updatedTask = task
                 updatedTask.name = getValues().name
                 updatedTask.description = getValues().description
+                updatedTask.start_time = getValues().start_time
+                updatedTask.end_time = getValues().end_time
                 return updatedTask
             }
             return task
@@ -94,20 +113,15 @@ function Tasking() {
         return string_time
     }
 
-    function STasks() {
-        let i = 0
-        let tasklist = ""
-        for (i; i < 3; i++) {
-            let index = pageNo*3 + i
-            if (index >= taskList.length) break
-            tasklist += <Task taskinfo={taskList[index]} />
-            alert(JSON.stringify(<Task taskinfo={taskList[index]} />))
-        }
-        return tasklist
-    }
-
     function ShowTasks() {
-        return taskList.map((task) => <Task taskInfo={task} />)
+        let i = 0
+        let subTaskList = []
+        for (i; i < 4; i++) {
+            let index = (pageNo-1)*4 + i
+            if (index >= taskList.length) break
+            subTaskList.push(taskList[index])
+        }
+        return subTaskList.map((task) => <Task taskInfo={task} />)
     }
 
     function Task(props) {
@@ -126,8 +140,11 @@ function Tasking() {
                                 id={props.taskInfo.id}
                                 name={props.taskInfo.name}
                                 description={props.taskInfo.description}
+                                start_time={props.taskInfo.start_time}
+                                end_time={props.taskInfo.end_time}
                                 onClick={switchToEditTask}
-                            >Chỉnh sửa</button></div>
+                            >Chỉnh sửa</button>
+                        </div>
                         <div>
                             <button 
                                 id={props.taskInfo.id}
@@ -148,8 +165,10 @@ function Tasking() {
     }
 
     const moveNextPage = () => {
-        let newPageNo = pageNo + 1
-        setPageNo(newPageNo)
+        if (pageNo * 4 < taskList.length) {
+            let newPageNo = pageNo + 1
+            setPageNo(newPageNo)
+        }
     }
     return (
         <div className='task'>
@@ -202,11 +221,19 @@ function Tasking() {
                                 <div>
                                     <div className='start-time'>
                                         <label for='start'>Từ:</label>
-                                        <input type='datetime-local' name='start'></input>
+                                        <input 
+                                            type='datetime-local' 
+                                            name='start'
+                                            {...register("start_time")}
+                                        ></input>
                                     </div>
                                     <div className='end-time'>
                                         <label for='end'>Đến:</label>
-                                        <input type='datetime-local' name='end'></input>
+                                        <input 
+                                            type='datetime-local' 
+                                            name='end'
+                                            {...register("end_time")}
+                                        ></input>
                                     </div>
                                     <div>
                                         <select>
