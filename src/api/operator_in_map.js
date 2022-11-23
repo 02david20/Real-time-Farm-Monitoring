@@ -14,31 +14,40 @@ import Container from 'react-bootstrap/Container';
 import {map, draw} from "../pages/Home/index.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDroplet, faMessage } from "@fortawesome/free-solid-svg-icons";
+import styles from "./icon_style.css";
+import DataField from "./field.json";
 
 var current_filter_type = 'all';
 
-export function Draw_icon_sensor_type(){
-    for (const marker of sensors) {
-        let icon_name = '';
-        switch(marker.type) {
-            case 'moist':
-                icon_name = 'fa-solid fa-droplet';
-                break;
-            case 'temp':
-                icon_name = 'fa-solid fa-temperature-sun';
-                break;
-            case 'pump':
-                icon_name = 'fa-solid fa-pump';
-                break;
-            default:
-                icon_name = 'fa-solid fa-droplet';
-        }
-        const el = <div className={marker.type}><FontAwesomeIcon icon={icon_name} /></div>;
-        new mapboxgl.Marker(el)
+function add_marker(marker){
+    let icon_class = marker.type+'_icon';
+    const el = document.createElement('div');
+    el.className = icon_class;
+
+    new mapboxgl.Marker(el)
         .setLngLat(marker.coordinate)
+        .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML(
+                    `<h5 style="background-color: #05386B; color: white;">${marker.type}</h5>
+                    <h6>data: ${marker.data}</h6>
+                    <h6>mode: ${marker.mode}</h6>
+                    <h6>coordinate: [${marker.coordinate}]</h6>
+                    `
+                )
+        )
         .addTo(map.current);
+}
+
+export function Draw_icon_sensor_type(){
+    // console.log('map.curret');
+    // console.log(map.current);
+    for (const marker of sensors) {
+        add_marker(marker);
     }
 }
+
+// popup: https://docs.mapbox.com/help/tutorials/markers-js/
 
 export function Filter(sensorType){
     let current_visual_sensors = document.getElementsByClassName('mapboxgl-marker mapboxgl-marker-anchor-center');
@@ -51,27 +60,9 @@ export function Filter(sensorType){
         Draw_icon_sensor_type();
         return;
     }
-
-    let icon_name = 'temp';
-    switch(sensorType) {
-        case 'moist':
-            icon_name = 'fa-solid fa-droplet';
-            break;
-        case 'temp':
-            icon_name = 'fa-solid fa-temperature-sun';
-            break;
-        case 'pump':
-            icon_name = 'fa-solid fa-pump';
-            break;
-        default:
-            icon_name = 'fa-solid fa-droplet';
-    }
     for (const marker of sensors) {
         if (marker.type !== sensorType) continue;
-        const el = <div><FontAwesomeIcon icon={icon_name}/></div>;
-        new mapboxgl.Marker(el)
-        .setLngLat(marker.coordinate)
-        .addTo(map.current);
+        add_marker(marker);
     }
     current_filter_type = sensorType;
 }
@@ -104,15 +95,27 @@ export function CreateNewField(){
     map.current.on('draw.delete', deleteArea);
 }
 
+function saveArea(features){
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+        JSON.stringify(features)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+
+    link.click();
+    
+}
+
 function createArea(e) {
-    // console.log(data);
-    // console.log(data.features.length);
     let id = e.features[0].id;
+    console.log(e.features[0]);
     // console.log(e.features[0].geometry);
     map.current.addSource('polygon'+String(id),{
         'type': 'geojson',
         'data': e.features[0].geometry
     });
+    console.log(map.current.getSource('polygon' + String(id)));
 
     map.current.addLayer({
         'id': 'layer_polygon' + String(id),
@@ -124,33 +127,20 @@ function createArea(e) {
             'fill-opacity': 0.5
         }
     });
+    DataField.push({"features": e.features});
+    console.log("new field add to data");
+    console.log(DataField);
+    console.log(map.current.getLayer('layer_polygon' + String(id)));
 }
 
 function updateArea(e) {
+    // console.log(e);
     // console.log(e.features);
     let id = e.features[0].id;
-
-    // map.current.removeLayer('layer_polygon' + String(id));
-    // console.log(id);
-    // map.current.getSource('polygon' + String(id)).setData({
-    //     "type": "FeatureCollection",
-    //     "features": [{
-    //         "type": "geojson",
-    //         'data': e.features[0].geometry
-    //     }]
-    // });    
-
-    // map.current.addLayer({
-    //     'id': 'layer_polygon' + String(id),
-    //     'type': 'fill',
-    //     'source': 'polygon' + String(id),
-    //     'paint': {
-    //         'fill-color': getRandomColor(),
-    //         // 'fill-outline-color': '#3bb2d0',
-    //         'fill-opacity': 0.4
-    //     }
-    // });
-    
+    map.current.getSource('polygon' + String(id)).setData({
+        type: "FeatureCollection",
+        features: e.features
+    });    
 }
 
 
@@ -160,4 +150,72 @@ function deleteArea(e){
     // console.log(id);
     map.current.removeLayer('layer_polygon' + String(id));
     map.current.removeSource('polygon' + String(id));
+}
+
+var first_time_load_area = true;
+
+function loadField(e) {
+    let id = e.features[0].id;
+    console.log(e.features[0]);
+    // console.log(e.features[0].geometry);
+    map.current.addSource('polygon'+String(id),{
+        'type': 'geojson',
+        'data': e.features[0].geometry
+    });
+    console.log(map.current.getSource('polygon' + String(id)));
+
+    map.current.addLayer({
+        'id': 'layer_polygon' + String(id),
+        'type': 'fill',
+        'source': 'polygon' + String(id),
+        'paint': {
+            'fill-color': getRandomColor(),
+            // 'fill-outline-color': '#3bb2d0',
+            'fill-opacity': 0.5
+        }
+    });
+    console.log(map.current.getLayer('layer_polygon' + String(id)));
+}
+
+export function LoadArea(){
+// maybe field auto destroy when go to another tab
+    if (first_time_load_area){
+        for (let i = 0; i < DataField.length; i++){
+            loadField(DataField[i]);
+        }
+        first_time_load_area = false;
+    }
+    else{
+        if (DataField.length > 0){
+            let id = 'layer_polygon' + DataField[0].features[0].id;
+            try{
+                const visibility = map.current.getLayoutProperty(id, 'visibility');
+                for (let i = 0; i < DataField.length; i++){
+                    let id = 'layer_polygon' + DataField[i].features[0].id;
+                    try{
+                        if (visibility === 'visible') {
+                            map.current.setLayoutProperty(id, 'visibility', 'none');
+                        } else {
+                            map.current.setLayoutProperty(id, 'visibility', 'visible');
+                        }
+                    }
+                    catch(exceptionVar){
+                        loadField(DataField[i]);
+                    }
+                    
+                }
+            } catch (exceptionVar) {
+                
+            } finally {
+                for (let i = 0; i < DataField.length; i++){
+                    try{
+                        loadField(DataField[i]);
+                    }
+                    catch(exceptionVar){
+
+                    }
+                }
+            }            
+        }        
+    }    
 }

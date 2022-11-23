@@ -2,7 +2,7 @@ import SideNav, {NavItem, NavIcon, NavText} from "@trendmicro/react-sidenav"
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { useState } from "react";
 import { Icon } from '@iconify/react';
-import {CreateNewField, Filter} from '../../../../api/operator_in_map';
+import {CreateNewField, Filter, LoadArea} from '../../../../api/operator_in_map';
 import styles from './Header.module.css';
 import React from 'react';
 import {
@@ -33,9 +33,7 @@ function Header() {
         <NavLink to='/home' activeStyle>
         Trang chủ
         </NavLink>
-        <NavLink to='/region' activeStyle>
-        Vùng
-        </NavLink>
+        <button onClick={LoadArea}>Vùng</button>
         <button onClick={CreateNewField}>Tạo khu vực</button>
         <NavLink to='/see' activeStyle>
         Xem khu vực
