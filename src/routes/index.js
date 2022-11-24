@@ -1,6 +1,6 @@
 import React from "react";
 // Import Layout
-import { ManageFarmLayout } from "../components/Layouts";
+import { DefaultLayout, ManageFarmLayout } from "../components/Layouts";
 // Import Route Pages
 
 import Tasking from "../pages/Manage farm/Tasking";
@@ -15,17 +15,16 @@ const Dashboard = React.lazy(() => import("../pages/Dashboard"))
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
-  { path: "/", component: Login, layout: null },
-  { path: "/login", component: Login, layout: null },
-  { path: "/signup", component: Signup, layout: null },
-  { path: "/manage_farm", component: Tasking, layout: ManageFarmLayout },
-  { path: "/manage_farm/tasking", component: Tasking, layout: ManageFarmLayout },
-  { path: "/manage_farm/setting-pump", component: Setting_pump, layout: ManageFarmLayout },
-  { path: "/field/setting", component: Setting },
-  { path: "/field", component: Home },
-  { path: "/history", component: History },
-  { path: "/history", component: Forumn },
-  { path: "/field/dashboard", component: Dashboard }
+    { path: "/", component: Login, layout: null },
+    { path: "/login", component: Login, layout: null },
+    { path: "/signup", component: Signup, layout: null },
+    { path: "/manage_farm", component: Tasking, layout: DefaultLayout },
+    { path: "/manage_farm/tasking", component: Tasking, layout: DefaultLayout },
+    { path: "/manage_farm/setting-pump", component: Setting_pump, layout: DefaultLayout },
+    { path: "/field/setting", component: Setting },
+    { path: "/field", component: Home,layout: ManageFarmLayout },
+    { path: "/history", component: History },
+    { path: "/field/dashboard", component: Dashboard }
 ];
 
 //Require Login

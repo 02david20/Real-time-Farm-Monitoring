@@ -2,10 +2,10 @@ import Header from "../components/Header";
 import UserSidebar from "../components/UserSidebar";
 import styles from "./DefaultLayout.module.css";
 
-function DefaultLayout({ children }) {
+function ManageFarmLayout({ children }) {
   return (
     <div>
-      {/*<Header></Header>*/}
+      <Header></Header>
 
       <UserSidebar></UserSidebar>
 
@@ -17,4 +17,4 @@ function DefaultLayout({ children }) {
 
 }
 
-export default DefaultLayout;
+export default ManageFarmLayout;
