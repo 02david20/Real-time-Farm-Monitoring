@@ -27,12 +27,6 @@ function Header() {
         <NavLink to='/anoun' activeStyle>
         Thông báo
         </NavLink>
-        <NavLink to='/notic' activeStyle>
-        Tin nhắn
-        </NavLink>
-        <NavLink to='/home' activeStyle>
-        Trang chủ
-        </NavLink>
         <button onClick={LoadArea}>Vùng</button>
         <button onClick={CreateNewField}>Tạo khu vực</button>
         <NavLink to='/see' activeStyle>
@@ -43,6 +37,9 @@ function Header() {
         <button onClick={() => Filter('pump')} >Máy bơm</button>
         <NavLink to='/field/setting' activeStyle>
             Cài đặt
+        </NavLink>
+        <NavLink to='/field/dashboard'>
+            Dashboard
         </NavLink>
         {/* Second Nav */}
         {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}

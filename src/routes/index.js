@@ -11,7 +11,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Forumn from "../pages/Forumn"
-const Dashboard = React.lazy(() => import("../pages/Dashboard"))
+import Dashboard from "../pages/Dashboard"
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
