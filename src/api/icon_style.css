@@ -1,0 +1,26 @@
+.moist_icon {
+    background-image: url('http://drive.google.com/uc?export=view&id=1yP5iGWgrmeODAZTMDVlLLyTHCHlQMEPS');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.temp_icon {
+    background-image: url('http://drive.google.com/uc?export=view&id=15oVVg0Z0CrbI9AEVGQTlIVqNQJxuWBAF');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pump_icon {
+    background-image: url('http://drive.google.com/uc?export=view&id=19LiDeAYdz64ChGghn6HQv6fhT987UU-R');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}

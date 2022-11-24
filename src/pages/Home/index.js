@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import mapboxgl from "mapbox-gl";
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import {Draw_icon_sensor_type} from '../../api/operator_in_map';
+import {Draw_icon_sensor_type, LoadArea} from '../../api/operator_in_map';
 // import "./styles.css";
 // npm cache clean --force
 // document: https://github.com/amaurym/react-mapbox-gl-draw
@@ -48,7 +48,9 @@ function HomePage() {
     });
 
     useEffect(() => Draw_icon_sensor_type());
-
+    // useEffect(() => LoadArea());
+    // LoadArea();
+    // map.current.on('load', () => LoadArea());
     return(
         <div ref={mapContainer} style={{height:"700px"}}>
 

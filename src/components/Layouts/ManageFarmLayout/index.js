@@ -5,7 +5,7 @@ import styles from "./DefaultLayout.module.css";
 function DefaultLayout({ children }) {
   return (
     <div>
-      <Header></Header>
+      {/*<Header></Header>*/}
 
       <UserSidebar></UserSidebar>
 
