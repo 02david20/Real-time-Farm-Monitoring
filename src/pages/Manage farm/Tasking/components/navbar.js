@@ -4,7 +4,7 @@ import './navbar.scss'
 
 function Navbar() {
     return (
-        <div className='navbar'>
+        <div className='taskingNavbar'>
             <Link to='/manage_farm/tasking' className='tasking'>Lập công việc</Link>
             <Link to='/manage_farm/setting-pump' className='setting-pump'>Thiết lập máy bơm</Link>
         </div>

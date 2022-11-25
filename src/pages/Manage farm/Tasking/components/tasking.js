@@ -235,14 +235,6 @@ function Tasking() {
                                             {...register("end_time")}
                                         ></input>
                                     </div>
-                                    <div>
-                                        <select>
-                                            <option default>Không lặp</option>
-                                            <option>Hằng ngày</option>
-                                            <option>Hằng tuần</option>
-                                            <option>Hằng tháng</option>
-                                        </select>
-                                    </div>
                                     <div id={addOrEditTask ? "add" : "edit"}>
                                         <div className='add-task-buttons'>
                                             <button type='button' className='del-task' onClick={denyAddTask}>Xóa</button>                                        

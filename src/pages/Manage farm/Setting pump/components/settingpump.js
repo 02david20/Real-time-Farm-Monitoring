@@ -165,14 +165,6 @@ function Setting_pump() {
                                     {...register("end_time")}
                                 ></input>
                             </div>
-                            <div>
-                                <select>
-                                    <option default>Không lặp</option>
-                                    <option>Hằng ngày</option>
-                                    <option>Hằng tuần</option>
-                                    <option>Hằng tháng</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                     <div className='buttons'>
