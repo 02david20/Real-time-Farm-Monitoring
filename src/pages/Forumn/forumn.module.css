@@ -1,0 +1,25 @@
+.container {
+    background-color: #5CDB95;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.forumn {
+    padding: 10px;
+    margin: 15px;
+    background-color: white;
+    border-radius: 4mm;
+}
+
+.forumnTitle {
+    font-size: 150%;
+    color: blue;
+}
+
+.postInfo {
+    border-left: 1px solid black;
+}
+
+.statsInfo {
+    border-left: 1px solid black;
+}

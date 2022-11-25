@@ -24,7 +24,8 @@ const publicRoutes = [
     { path: "/field/setting", component: Setting },
     { path: "/field", component: Home,layout: ManageFarmLayout },
     { path: "/history", component: History },
-    { path: "/field/dashboard", component: Dashboard }
+    { path: "/field/dashboard", component: Dashboard },
+    { path: "/forumn", component: Forumn, layout: ManageFarmLayout}
 ];
 
 //Require Login
