@@ -8,6 +8,7 @@ import Setting_pump from "../pages/Manage farm/Setting pump";
 import Setting from "../pages/Setting";
 import History from "../pages/History";
 import Home from "../pages/Home";
+import Fields from "../pages/Fields";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
@@ -29,8 +30,9 @@ const publicRoutes = [
     component: Setting_pump,
     layout: DefaultLayout,
   },
+  { path: "/fields", component: Fields },
   { path: "/field/setting", component: Setting },
-  { path: "/field", component: Home, layout: ManageFarmLayout },
+  { path: "/field/:id", component: Home, layout: ManageFarmLayout },
   { path: "/field/dashboard", component: Dashboard },
   { path: "/history", component: History },
   { path: "/forumn", component: Forumn },

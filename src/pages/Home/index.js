@@ -1,9 +1,11 @@
 // import {set_up_map} from "../../api/operator_in_map.js"
 import { useRef, useEffect, useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
 import mapboxgl from "mapbox-gl";
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import {Draw_icon_sensor_type, LoadArea} from '../../api/operator_in_map';
+
 // import "./styles.css";
 // npm cache clean --force
 // document: https://github.com/amaurym/react-mapbox-gl-draw
@@ -12,11 +14,15 @@ mapboxgl.accessToken = "pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNuc
 var map = [];
 var draw = [];
 function HomePage() {
+    const {id} = useParams()
+    const location = useLocation()
+    const coordinate = location.state.coordinate
+    
     const mapContainer = useRef(null);
     map = useRef(null);
     // const map = useRef(null);
-    const [lng, setLng] = useState(-91.874);
-    const [lat, setLat] = useState(42.76);
+    const [lng, setLng] = useState(coordinate[0]);
+    const [lat, setLat] = useState(coordinate[1]);
     const [zoom, setZoom] = useState(13);
 
     useEffect(() => {

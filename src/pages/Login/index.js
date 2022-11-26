@@ -36,7 +36,7 @@ function Login() {
             </a>
           </p>
           <div class="d-grid">
-            <Link to="/field" style={{width:''}}>
+            <Link to="/fields" style={{width:''}}>
               <button class="btn btn-primary" type="submit">
                 Login
               </button>

@@ -17,9 +17,7 @@ function renderSensor(arr, choose, setChoose) {
                     cursor:"pointer",
                     height:'80%'
                 }}
-            >
-
-                                           
+            >                                           
             </div>
         )
     }
@@ -104,7 +102,7 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
             style={{
                 backgroundColor: 'white',
                 position: 'fixed',
-                top: '75px',
+                top: '70px',
                 width: '100%',
                 zIndex: '10',
                 height: '100vh',
@@ -121,7 +119,7 @@ function AddingForm({setSensorList, sensorList, sensorChange, setShowForm}) {
                     setShowForm={setShowNew}
                 ></SensorDetail>
             }
-            <Row style={{height:'80%'}}>
+            <Row style={{height:'75%', marginTop:"2%"}}>
                 <Col xs={2}
                     
                 ></Col>

@@ -1,22 +1,41 @@
-import {
-    cibCcAmex,
-    cibCcApplePay,
-    cibCcMastercard,
-    cibCcPaypal,
-    cibCcStripe,
-    cibCcVisa,
-    cifBr,
-    cifEs,
-    cifFr,
-    cifIn,
-    cifPl,
-    cifUs,
-    cilCloudDownload,
-    cilPeople,
-    cilArrowBottom,
-  } from '@coreui/icons'
-import { getStyle, hexToRgba } from '@coreui/utils'
+import fieldImg from "../assets/images/field1.png"
+import sensorImg from '../api/sensors_icon/map_icon.png'
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+const UserFields = [
+  {
+    id : 1,
+    name: 'Cam',
+   coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 2,
+    name: 'Bưởi',
+    coordinate:[ -91.8,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 1,
+    name: 'Xoài',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 1,
+    name: 'Quýt',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 1,
+    name: 'Mãn Cầu',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+]
+
+
 const sensors = [
     {
         id : 1,
@@ -154,7 +173,7 @@ const availableSensors = [
 
 ]
 
-const icon = '../api/sensors_icon/map_icon.png'
+const icon = sensorImg
 const sensorsDetail = 
 [
     {
@@ -279,7 +298,7 @@ for (let i=0;tt<24*60; i++) {
     tt = tt + x;
     count++;
 }
-console.log(times);
+
 
 StatisticDaily['labels'] = times
 
@@ -291,5 +310,5 @@ for (let index = 0; index < StatisticDaily.datasets.length; index++) {
     StatisticDaily.datasets[index].data = temp;
 }
 
-export  {sensors,availableSensors, sensorsDetail, StatisticDaily}
+export  {UserFields,sensors,availableSensors, sensorsDetail, StatisticDaily}
 

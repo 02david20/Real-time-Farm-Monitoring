@@ -11,7 +11,7 @@ const FeedbackForm = (props) => {
   const [sendFMessage, setSendFMessage] = useState(false);
 
   const redirectToHome = () => {
-    window.location.href="/"
+    window.location.href="/fields"
   };
 
   const handleSendClick = () => {

@@ -43,7 +43,7 @@ function UserSidebar({ children }) {
         <SideNav.Nav defaultSelected="home">
           <NavItem eventKey="home">
             <NavIcon>
-              <Link to="/field">
+              <Link to="/fields">
                 <Icon
                   icon="noto-v1:woman-farmer-light-skin-tone"
                   width="30"

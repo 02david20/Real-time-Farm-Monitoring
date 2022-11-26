@@ -20,7 +20,7 @@ function App() {
                   Layout = Fragment
               const Page = route.component
               return <Route key={index} 
-                            path={route.path} 
+                            path={route.path}
                             element={
                               <Layout>
                                 <Page></Page>

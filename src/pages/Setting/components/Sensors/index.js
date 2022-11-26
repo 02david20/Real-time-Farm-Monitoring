@@ -2,7 +2,7 @@ import Sensor from './components/Sensor'
 import Toolbars from './components/Toolbars'
 import SensorDetail from './components/SensorDetail'
 import AddingForm from './components/AddingForm'
-
+import PopUp from './components/PopUp'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 
 import Container from 'react-bootstrap/Container'
 import { useRef, useEffect, useState } from 'react'
-
+import { Modal, Button } from 'react-bootstrap'
 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
@@ -41,6 +41,8 @@ function Sensors() {
     const [switchSensor,setSwitchSensor] = useState(() => sensorList[0].mode)
     const [showForm, setShowForm] = useState(false)
     const [showAdd, setShowAdd] = useState(false)
+    const [popup, setPopup] = useState(false)
+    const [submitPopup, setSubmitPopup] = useState(false)
 
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -160,9 +162,23 @@ function Sensors() {
             }
         })
 
-        console.log(sensorForm)
     }
 
+
+    const handleShowForm = () => {
+        handleSubmitChange()
+        const f = JSON.stringify(sensorForm.current)
+        sensorForm.current = {
+            add : [],
+            remove: [],
+            modify:{} 
+        }
+        return f
+    }
+
+    const handleSubmitForm = () => {
+        console.log(sensorForm);
+    }
     // Change lng, lat to new location
     const handleMoveMap = (long,lat) => {
         setLng(long)
@@ -182,6 +198,12 @@ function Sensors() {
         }else {
             alert("There are no sensors left");
         }
+        setPopup(!popup)
+    }
+
+    const handleDeletePopUp = () => {
+        console.log(popup);
+        setPopup(!popup)
     }
 
     // Chỉnh sửa thông tin của 1 sensor
@@ -192,28 +214,73 @@ function Sensors() {
         setShowAdd(prev => !prev)
     }
 
+    const handleSubmitPopUp = () => {
+        setSubmitPopup(prev => !prev)
+    }
+
     
     return (
-        <div style={{height:"100vh"}}>
+        <div style={{height:"100%"}} className="container overflow-hidden">
             <div className="btn btn-success"
                  style = {{
                     position: 'fixed',
-                    bottom: '10px',
-                    right:'7%',
+                    bottom: '10%',
+                    right:'5%',
                  }}    
-                 onClick={()=>handleSubmitChange()}
+                 onClick={()=>handleSubmitPopUp()}
             >
                 Xác nhận
             </div>
+
+
+            <Modal show={submitPopup} onHide={handleSubmitPopUp}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Remove Confirmation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {
+                        handleShowForm()
+                    }
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleSubmitPopUp}>
+                        Hủy
+                    </Button>
+                    <Button variant="danger" onClick={handleSubmitForm}>
+                        Xác nhận
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             <Toolbars
-                 removeSensor = {handleRemoveSensor}
+                 removeSensor = {handleDeletePopUp}
                  editSensor = {handleEditSensor}
                  addSensor = {handleAddSensor}
             ></Toolbars>
 
+            
+            {
+                // Delete PopUpConfirmation
+            }
+                 <Modal show={popup} onHide={handleDeletePopUp}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Remove Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Sau khi xác nhận, một sensor sẽ được loại bỏ</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleDeletePopUp}>
+                        Hủy
+                        </Button>
+                        <Button variant="danger" onClick={handleRemoveSensor}>
+                        Xác nhận
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                
+      
             {   
                 // If It is new sensor added then just modify info and not modify sensorChange
-                showForm &&
+                showForm &&                
                 <SensorDetail
                     choose={choose}
                     setSensorList = {setSensorList}
@@ -292,5 +359,6 @@ function Sensors() {
         </div>
     )
 }
+
 
 export default Sensors;

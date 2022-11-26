@@ -15,7 +15,7 @@ function Setting() {
     return (
         
         <div className="Setting">
-            <div className="d-flex justify-content-start mb-2 gap-0 ms-0">
+            <div className="d-flex justify-content-start m-2">
                 <Button variant={!choice ? "primary" : "secondary"} 
                         size="lg"
                         style={{borderRadius:0}}
@@ -31,8 +31,8 @@ function Setting() {
                     Chỉnh sửa khu vực
                 </Button>
             </div>       
-            
-            {!choice ? <Sensors/> : <Fields/>}
+           
+                {!choice ? <Sensors/> : <Fields/>}
         </div>
     )
 }

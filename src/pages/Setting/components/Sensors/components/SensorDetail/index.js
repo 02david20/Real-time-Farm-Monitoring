@@ -60,10 +60,11 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
         zIndex:4,
         left:"50%",
         padding: '2%',
-        
+        transition:"fade 2s linear 1s",
       }}
       onSubmit={e => { e.preventDefault(); }} // Disable Submission to handle Form Input
       >
+
         <h2>{sensor.id?sensor.id:"New Sensor"}</h2>
 
         <div className="form-group">

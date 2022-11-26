@@ -1,9 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import {
-  CAvatar,
   CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
@@ -20,35 +18,18 @@ import {
   CWidgetStatsA,
 } from "@coreui/react";
 import { CChartLine } from "@coreui/react-chartjs";
-import { getStyle, hexToRgba } from "@coreui/utils";
+import { getStyle } from "@coreui/utils";
 import CIcon from "@coreui/icons-react";
+import { Link } from "react-router-dom";
 import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-  cilCloudDownload,
   cilPeople,
-  cilArrowBottom,
 } from "@coreui/icons";
 
-import avatar1 from "../../api/sensors_icon/map_icon.png";
-import avatar2 from "../../api/sensors_icon/map_icon.png";
-import avatar3 from "../../api/sensors_icon/map_icon.png";
-import avatar4 from "../../api/sensors_icon/map_icon.png";
-import avatar5 from "../../api/sensors_icon/map_icon.png";
-import avatar6 from "../../api/sensors_icon/map_icon.png";
+
 
 import { sensorsDetail, StatisticDaily } from "../../api/api";
 const Dashboard = () => {
+  let navigate = useNavigate();
   const random = (min, max) =>
     Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -66,7 +47,7 @@ const Dashboard = () => {
   console.log(statDaily);
 
   const Sensors = sensorsDetail;
-  console.log(Sensors);
+
   return (
     <>
       <CCard className="mb-4">
@@ -78,21 +59,11 @@ const Dashboard = () => {
               </h4>
             </CCol>
             <CCol sm={7} className="d-none d-md-block">
-              <CButton color="primary" className="float-end">
-                <CIcon icon={cilCloudDownload} />
+              
+              <CButton color="primary" className="float-end" onClick={()=>navigate(-1)}>
+                Quay về khu vườn
               </CButton>
-              <CButtonGroup className="float-end me-3">
-                {["Day", "Month", "Year"].map((value) => (
-                  <CButton
-                    color="outline-secondary"
-                    key={value}
-                    className="mx-0"
-                    active={value === "Month"}
-                  >
-                    {value}
-                  </CButton>
-                ))}
-              </CButtonGroup>
+              
             </CCol>
           </CRow>
           <CChartLine
@@ -170,11 +141,8 @@ const Dashboard = () => {
                       {Sensors.map((item, index) => (
                         <CTableRow v-for="item in tableItems" key={index}>
                           <CTableDataCell className="text-center">
-                            <CAvatar
-                              size="md"
-                              src={item.icon.src}
-                              status={item.icon.status}
-                            />
+                            
+                          
                           </CTableDataCell>
 
                           <CTableDataCell>
