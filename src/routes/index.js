@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Forumn from "../pages/Forumn"
 import Dashboard from "../pages/Dashboard"
+import FeedbackForm from "../pages/SendFeedback/FeedbackForm";
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
@@ -24,7 +25,8 @@ const publicRoutes = [
     { path: "/field/setting", component: Setting },
     { path: "/field", component: Home,layout: ManageFarmLayout },
     { path: "/history", component: History },
-    { path: "/field/dashboard", component: Dashboard }
+    { path: "/field/dashboard", component: Dashboard },
+    { path: "/SendFeedback/FeedbackForm", component: FeedbackForm},
 ];
 
 //Require Login
