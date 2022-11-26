@@ -10,22 +10,34 @@ import History from "../pages/History";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Forumn from "../pages/Forumn"
-import Dashboard from "../pages/Dashboard"
+
+import Forumn from "../pages/Forumn";
+import Dashboard from "../pages/Dashboard";
+import PostList from "../pages/Post/PostList";
+import PostDetail from "../pages/Post/PostDetail";
+import FeedbackForm from "../pages/SendFeedback/FeedbackForm";
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
-    { path: "/", component: Login, layout: null },
-    { path: "/login", component: Login, layout: null },
-    { path: "/signup", component: Signup, layout: null },
-    { path: "/manage_farm", component: Tasking, layout: ManageFarmLayout },
-    { path: "/manage_farm/tasking", component: Tasking, layout: ManageFarmLayout },
-    { path: "/manage_farm/setting-pump", component: Setting_pump, layout: ManageFarmLayout },
-    { path: "/field/setting", component: Setting },
-    { path: "/field", component: Home,layout: ManageFarmLayout },
-    { path: "/history", component: History },
-    { path: "/field/dashboard", component: Dashboard },
-    { path: "/forumn", component: Forumn, layout: ManageFarmLayout}
+  { path: "/", component: Login, layout: null },
+  { path: "/login", component: Login, layout: null },
+  { path: "/signup", component: Signup, layout: null },
+  { path: "/manage_farm", component: Tasking, layout: DefaultLayout },
+  { path: "/manage_farm/tasking", component: Tasking, layout: DefaultLayout },
+  {
+    path: "/manage_farm/setting-pump",
+    component: Setting_pump,
+    layout: DefaultLayout,
+  },
+  { path: "/field/setting", component: Setting },
+  { path: "/field", component: Home, layout: ManageFarmLayout },
+  { path: "/field/dashboard", component: Dashboard },
+  { path: "/history", component: History },
+  { path: "/forumn", component: Forumn },
+  { path: "/field/dashboard", component: Dashboard },
+  { path: "/forumn/forumn-title", component: PostList },
+  { path: "/forumn/forumn-title/post-title", component: PostDetail },
+  { path: "/SendFeedback/FeedbackForm", component: FeedbackForm},
 ];
 
 //Require Login

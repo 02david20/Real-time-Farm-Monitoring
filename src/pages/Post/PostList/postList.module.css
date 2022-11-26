@@ -1,0 +1,33 @@
+.container {
+    background-color: #8EE4AF;
+}
+
+.postListWrapper {
+    background-color: #5CDB95;
+    text-align: left;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+h1 {
+    margin: 30px 0px;
+    text-align: center;
+}
+
+h3 {
+    color: #05386B;
+}
+
+p {
+    color: gray;
+}
+
+.postWrapper {
+    background-color: #fff;
+    margin: 0px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.postInfo {
+    border-left: 1px solid black;
+}
