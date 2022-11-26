@@ -25,7 +25,7 @@ const publicRoutes = [
     { path: "/field/setting", component: Setting },
     { path: "/field", component: Home,layout: ManageFarmLayout },
     { path: "/history", component: History },
-    { path: "/field/dashboard", component: Dashboard }
+    { path: "/field/dashboard", component: Dashboard },
     { path: "/SendFeedback/FeedbackForm", component: FeedbackForm},
 ];
 
