@@ -103,7 +103,7 @@ function SensorList() {
   return (
     <Container>
       {sensors.map((sensor) => (
-        <Row>
+        <Row key={sensor.id}>
           <div className={styles.sensorCover}>
             <Row>
               <Col lg="2" md="2">
