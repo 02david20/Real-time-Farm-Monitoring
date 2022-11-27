@@ -95,7 +95,7 @@ function UserSidebar({ children }) {
 
           <NavItem eventKey="charts">
             <NavIcon>
-              <Link to="/SendFeedback/FeedbackForm">
+              <Link to="/SendFeedback">
                 <Icon icon="carbon:idea" color="white" width="30" height="30" />
               </Link>
             </NavIcon>
