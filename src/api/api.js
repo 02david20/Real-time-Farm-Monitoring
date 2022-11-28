@@ -16,20 +16,38 @@ const UserFields = [
     img:fieldImg
   },
   {
-    id : 1,
+    id : 3,
     name: 'Xoài',
     coordinate:[ -91.874,42.76 ],
     img:fieldImg
   },
   {
-    id : 1,
+    id : 4,
     name: 'Quýt',
     coordinate:[ -91.874,42.76 ],
     img:fieldImg
   },
   {
-    id : 1,
-    name: 'Mãn Cầu',
+    id : 5,
+    name: 'Mận',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 6,
+    name: 'Dưa hấu',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 7,
+    name: 'Dưa Gang',
+    coordinate:[ -91.874,42.76 ],
+    img:fieldImg
+  },
+  {
+    id : 8,
+    name: 'Vải',
     coordinate:[ -91.874,42.76 ],
     img:fieldImg
   },

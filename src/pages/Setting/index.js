@@ -23,13 +23,6 @@ function Setting() {
                 >
                     Điều khiển thiết bị
                 </Button>
-                <Button variant={choice ? "primary" : "secondary"} 
-                        size="lg"
-                        style={{borderRadius:0}}
-                        onClick={() => handleChoice(1)}
-                >
-                    Chỉnh sửa khu vực
-                </Button>
             </div>       
            
                 {!choice ? <Sensors/> : <Fields/>}

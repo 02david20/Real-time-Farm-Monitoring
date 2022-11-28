@@ -12,12 +12,12 @@ import { useForm } from "react-hook-form";
 import Container from 'react-bootstrap/Container'
 import { useRef, useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 // Sensor API array
 import {sensors} from '../../../../api/api'
-
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoibmh0aHVuZzEwMTIiLCJhIjoiY2w5NWEzbHczMmJlbjNucGMydGhnNHNheCJ9.CaiZuHejM4TIVmh4KnMpaw';
 
@@ -27,6 +27,7 @@ function Sensors() {
         remove: [],
         modify:{} 
     })
+    let navigate = useNavigate();
 
     // Record Change In Action of Every Sensor
     // {key:value}, 'deleted'
@@ -178,6 +179,7 @@ function Sensors() {
 
     const handleSubmitForm = () => {
         console.log(sensorForm);
+        navigate(-1);
     }
     // Change lng, lat to new location
     const handleMoveMap = (long,lat) => {
@@ -235,7 +237,7 @@ function Sensors() {
 
             <Modal show={submitPopup} onHide={handleSubmitPopUp}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Remove Confirmation</Modal.Title>
+                    <Modal.Title>Xác nhận cập nhật</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {
@@ -246,7 +248,7 @@ function Sensors() {
                     <Button variant="primary" onClick={handleSubmitPopUp}>
                         Hủy
                     </Button>
-                    <Button variant="danger" onClick={handleSubmitForm}>
+                    <Button variant="danger" onClick={()=>handleSubmitForm()}>
                         Xác nhận
                     </Button>
                 </Modal.Footer>

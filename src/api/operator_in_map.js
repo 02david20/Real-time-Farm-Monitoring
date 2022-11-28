@@ -1,20 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ReactMapboxGl from "react-mapbox-gl";
-import DrawControl from "react-mapbox-gl-draw";
+
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-supported";
-import mapboxgl from "mapbox-gl";
+import mapboxgl from "!mapbox-gl";  // eslint-disable-line import/no-webpack-loader-syntax
 // import mapboxgl from '!mapbox-gl';
-import { useRef, useEffect, useState } from 'react';
-import MapboxDraw from '@mapbox/mapbox-gl-draw';
+
 import {sensors} from "./api";
-import Container from 'react-bootstrap/Container';
 import {map, draw} from "../pages/Home/index.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDroplet, faMessage } from "@fortawesome/free-solid-svg-icons";
-import styles from "./icon_style.css";
+import "./icon_style.css";
 import DataField from "./field.json";
 
 var current_filter_type = 'all';
@@ -95,6 +88,7 @@ export function CreateNewField(){
     map.current.on('draw.delete', deleteArea);
 }
 
+// eslint-disable-next-line no-unused-vars
 function saveArea(features){
     const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
         JSON.stringify(features)
