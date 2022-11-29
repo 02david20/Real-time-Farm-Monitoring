@@ -106,11 +106,25 @@ function Tasking() {
         setOpenAddingTask(!openAddingTask)
     } 
 
-    function convertTime(time) {
+    function convertTime(start_time, end_time) {
         let string_time = "";
-        if (time.day !== 0) string_time += time.day + "d ";
-        string_time += time.hour + "h " + time.minute + "m";
-        return string_time
+        let now_date = new Date() 
+        let start_date = new Date(start_time)
+        let end_date = new Date(end_time)
+        let day_end = Math.floor((end_date - now_date) / 86400000)
+        let day_remain = Math.floor((start_date - now_date) / 86400000)
+        if (day_end < 0) {
+            string_time = "Finished"
+        }
+        else if (day_remain < 0) {
+            string_time = "In progress"
+        }
+        else {
+            let hour_remain = Math.floor((start_date - now_date - day_remain*86400000) / 3600000)
+            let minute_remain = Math.floor((start_date - now_date - day_remain*86400000 - hour_remain*3600000) / 60000)
+            string_time = day_remain + "d " + hour_remain + "h " + minute_remain + "m"
+        } 
+        return string_time;
     }
 
     function ShowTasks() {
@@ -130,7 +144,7 @@ function Tasking() {
                 <h2>{props.taskInfo.name}</h2>
                 <Icon icon="ic:baseline-access-time" className="time-icon" />
                 <div className='time'>
-                    <p>{convertTime(props.taskInfo.time)}</p>
+                    <p>{convertTime(props.taskInfo.start_time, props.taskInfo.end_time)}</p>
                 </div>
                 <div className="option">
                     <Icon icon="bx:dots-horizontal-rounded" className="option-icon" />
