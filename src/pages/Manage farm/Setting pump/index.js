@@ -4,7 +4,7 @@ import Setting_pump from './components/settingpump.js'
 
 function Manage_farm() {
     return (
-        <div>
+        <div className={styles.background}>
             <Navbar />
             <Setting_pump />
         </div>

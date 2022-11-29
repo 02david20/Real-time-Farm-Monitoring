@@ -4,7 +4,7 @@ import Tasking from './components/tasking.js'
 
 function Manage_farm() {
     return (
-        <div>
+        <div className={styles.background}>
             <Navbar />
             <Tasking />
         </div>
