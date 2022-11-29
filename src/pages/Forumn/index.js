@@ -4,7 +4,8 @@ import {
   faUser,
   faPenToSquare,
 } from "@fortawesome/free-regular-svg-icons";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row, Button, Form, Modal } from "react-bootstrap";
+import { useState } from "react";
 import styles from "./forumn.module.css";
 
 const forumnList = [];
@@ -29,20 +30,57 @@ for (let i = 0; i < 5; i++) {
 }
 
 function Forumn() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div>
-      <Row className={styles.topSide}>
+    <div className={styles.main}>
+      <Row className="pt-3">
         <Col lg="4"></Col>
         <Col lg="4" className={styles.search}>
           <div class="d-flex justify-content-md-center">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success">Search</button>
+            <input class="form-control me-2 mt-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-primary mt-2">Search</button>
           </div>
         </Col>
         <Col lg="2" className={styles.add}>
-          <Button variant="light" size="lg">
+          <Button variant="light" size="lg" onClick={handleShow}>
             Create forumn
           </Button>
+          
+          <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Header closeButton>
+              <Modal.Title>Tạo diễn đàn mới</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>Tên diễn đàn</Form.Label>
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Mô tả</Form.Label>
+                  <Form.Control as="textarea" rows={6} />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Hủy
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Tạo diễn đàn
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Col>
       </Row>
       <Container className={styles.container}>
@@ -50,9 +88,11 @@ function Forumn() {
           <Row className={styles.forumn}>
             <Col lg="5" className="align-items-center">
               <div className="ms-2">
-                <Row className={styles.forumnTitle}>
-                  {forumn.forumnInfo.title}
-                </Row>
+                <Link to="/forumn/forumn-title" className={styles.link}>
+                  <Row className={styles.forumnTitle}>
+                    {forumn.forumnInfo.title}
+                  </Row>
+                </Link>
                 <Row className={styles.forumnHost}>
                   Host: {forumn.forumnInfo.host}
                 </Row>
@@ -83,13 +123,13 @@ function Forumn() {
               <div className={styles.statsInfo}>
                 <Row className={styles.numberPeople}>
                   <Col className="d-flex ms-4">
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} className="mt-1"/>
                     <div className="ms-2">{forumn.stats.user}</div>
                   </Col>
                 </Row>
                 <Row className={styles.numberPosts}>
                   <Col className="d-flex ms-4">
-                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <FontAwesomeIcon icon={faPenToSquare} className="mt-1"/>
                     <div className="ms-2">{forumn.stats.post}</div>
                   </Col>
                 </Row>
