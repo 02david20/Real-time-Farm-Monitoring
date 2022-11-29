@@ -83,12 +83,14 @@ function UserSidebar({ children }) {
 
           <NavItem eventKey="forumn">
             <NavIcon>
-              <Icon
-                icon="material-symbols:forum-outline"
-                color="white"
-                width="30"
-                height="30"
-              />
+              <Link to="/forumn">
+                <Icon
+                  icon="material-symbols:forum-outline"
+                  color="white"
+                  width="30"
+                  height="30"
+                />
+              </Link>
             </NavIcon>
             <NavText>Diễn đàn</NavText>
           </NavItem>
