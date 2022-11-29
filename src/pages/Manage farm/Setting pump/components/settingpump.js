@@ -127,9 +127,14 @@ function Setting_pump() {
                             </div>
                             <div className='show-water-remain'>
                                 <div className='text'>Lượng nước còn lại</div>
-                                <div className='full'>
-                                    <div className='water-remain' 
-                                        style={{width: convertToCssStyle(pumpInfo.water_remain_percent)}}>
+                                <div className='d-flex'>
+                                    <div className='full'>
+                                        <div className='water-remain' 
+                                            style={{width: convertToCssStyle(pumpInfo.water_remain_percent)}}>
+                                        </div>
+                                    </div>
+                                    <div className='percent'>
+                                        {pumpInfo.water_remain_percent*100}%
                                     </div>
                                 </div>
                             </div>
