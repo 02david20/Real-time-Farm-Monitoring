@@ -31,8 +31,8 @@ const FeedbackForm = (props) => {
       placeholder: "Tiêu Đề",
       label: "Tiêu Đề",
       required: true,
-      maxLength: 10,
-      errorMessage: `Tiêu đề không quá 10 ký tự`,
+      maxLength: 100,
+      errorMessage: `Tiêu đề không quá 100 ký tự`,
     },
     {
       id: 2,
@@ -40,8 +40,8 @@ const FeedbackForm = (props) => {
       placeholder: "Nội Dung",
       label: "Nội Dung",
       required: true,
-      maxLength: 10,
-      errorMessage: `Tiêu đề không quá 10 ký tự`,
+      maxLength: 1000,
+      errorMessage: `Nội dung không quá 1000 ký tự`,
     },
   ];
 
