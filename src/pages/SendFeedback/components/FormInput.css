@@ -1,7 +1,6 @@
 div.FormInput {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 div.FormInput textarea {
@@ -9,11 +8,11 @@ div.FormInput textarea {
   margin: 10px 0px;
   border-radius: 5px;
   border: 1px solid gray;
-  width: 1000px;
+  width: 50vw;
 }
 
 div.FormInput textarea[name="content"] {
-  height: 200px;
+  height: 30vh;
 }
 
 div.FormInput label {
@@ -29,10 +28,10 @@ div.FormInput span {
   display: none;
 }
 
-div.FormInput input:invalid[focused="true"] {
+div.FormInput textarea[focused="true"][error="true"] {
   border: 1px solid red;
 }
 
-div.FormInput input:invalid[focused="true"] ~ span {
+div.FormInput textarea[focused="true"][error="true"] ~ span {
   display: block;
 }

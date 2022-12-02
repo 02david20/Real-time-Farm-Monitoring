@@ -1,25 +1,27 @@
 import "./FeedbackForm.css";
 import FormInput from "./components/FormInput";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const FeedbackForm = (props) => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     title: "",
     content: "",
   });
-
+  const [submit, setSubmit] = useState([false, false]);
   const [sendFMessage, setSendFMessage] = useState(false);
 
-  const redirectToHome = () => {
-    window.location.href="/fields"
+  const navigateToHome = () => {
+    navigate("/");
   };
 
-  const handleSendClick = () => {
+  const showSendFMessage = () => {
     setSendFMessage(true);
     setTimeout(() => {
       setSendFMessage(false);
-      redirectToHome();
-    }, 1500);
+      setValues({title: "", content: ""});
+      }, 1500);
   };
 
   const inputs = [
@@ -29,6 +31,8 @@ const FeedbackForm = (props) => {
       placeholder: "Tiêu Đề",
       label: "Tiêu Đề",
       required: true,
+      maxLength: 100,
+      errorMessage: `Tiêu đề không quá 100 ký tự`,
     },
     {
       id: 2,
@@ -36,17 +40,23 @@ const FeedbackForm = (props) => {
       placeholder: "Nội Dung",
       label: "Nội Dung",
       required: true,
+      maxLength: 1000,
+      errorMessage: `Nội dung không quá 1000 ký tự`,
     },
   ];
 
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+      setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(Object.fromEntries(data.entries()));
+
+    if (submit.every(e => e === true)) {
+      showSendFMessage();
+      const data = new FormData(e.target);
+      console.log(Object.fromEntries(data.entries()));
+    }
   };
 
   return (
@@ -59,11 +69,13 @@ const FeedbackForm = (props) => {
             {...input}
             value={values[input.name]}
             onChange={onChange}
+            setSubmit={setSubmit}
+            submit={submit}
           />
         ))}
-        <button onClick={handleSendClick}>GỬI</button>
-        <button onClick={redirectToHome}>ĐÓNG</button>
-      </form>
+        <button className="Left">GỬI</button>
+        <button className="Right" type="button" onClick={navigateToHome}>ĐÓNG</button>
+      </form> 
       {sendFMessage && 
         <div className="sendFMessage-container">
             <div className="sendFMessage-inner">Bạn đã gửi phản hồi thành công</div>

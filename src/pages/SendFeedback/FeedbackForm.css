@@ -1,12 +1,8 @@
 div.FeedbackForm {
-  position: fixed;
   display: flex;
-  top: 0;
-  left: 0;
-  width: 100%;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  background-position: center;
 }
 
 div.FeedbackForm form {
@@ -22,7 +18,7 @@ div.FeedbackForm h1 {
 }
 
 div.FeedbackForm button {
-  width: 50%;
+  width: 45%;
   height: 50px;
   padding: 10px;
   border: none;
@@ -34,6 +30,14 @@ div.FeedbackForm button {
   cursor: pointer;
   margin-top: 15px;
   margin-bottom: 30px;
+}
+
+div.FeedbackForm button.Left {
+  float: left;
+}
+
+div.FeedbackForm button.Right {
+  float: right;
 }
 
 .sendFMessage-container {
