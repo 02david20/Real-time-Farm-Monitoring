@@ -1,0 +1,11 @@
+.container {
+    background-color: #8EE4AF;
+    padding: 80px;
+    min-height: 100vh;
+}
+
+.post {
+    background-color: #fff;
+    padding: 10px;
+    min-height: 300px;
+}
