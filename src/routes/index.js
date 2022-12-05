@@ -16,6 +16,7 @@ import Forumn from "../pages/Forumn";
 import Dashboard from "../pages/Dashboard";
 import PostList from "../pages/Post/PostList";
 import PostDetail from "../pages/Post/PostDetail";
+import Account from "../pages/Account";
 import FeedbackForm from "../pages/SendFeedback/FeedbackForm";
 // Not Required Login
 // layout:null --> No Layout
@@ -39,6 +40,7 @@ const publicRoutes = [
   { path: "/field/dashboard", component: Dashboard },
   { path: "/forumn/forumn-title", component: PostList },
   { path: "/forumn/forumn-title/post-title", component: PostDetail },
+  { path: "/account", component: Account },
   { path: "/SendFeedback/FeedbackForm", component: FeedbackForm},
 ];
 
