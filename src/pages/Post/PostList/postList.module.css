@@ -22,6 +22,10 @@ p {
     color: gray;
 }
 
+a {
+    text-decoration: none;
+}
+
 .postWrapper {
     background-color: #fff;
     margin: 0px 10px 10px 10px;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col, Form, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -25,17 +25,72 @@ for (let i = 1; i < 20; i++) {
 }
 
 function PostList() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className={styles.container}>
-      <Button variant="light" className="mt-3 mb-3">
-        +
-      </Button>
+      <Row className="pt-3">
+        <Col lg="4"></Col>
+        <Col lg="4" className={styles.search}>
+          <div class="d-flex justify-content-md-center">
+            <input
+              class="form-control me-2 mt-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-primary mt-2">Search</button>
+          </div>
+        </Col>
+        <Col lg="2" className={styles.add}>
+          <Button variant="light" size="lg" onClick={handleShow}>
+            Create new post
+          </Button>
+
+          <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Header closeButton>
+              <Modal.Title>Tạo bài viết mới</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Tên bài viết</Form.Label>
+                  <Form.Control type="text" autoFocus />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Nội dung</Form.Label>
+                  <Form.Control as="textarea" rows={6} />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Hủy
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Đăng bài viết
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </Col>
+      </Row>
       <Container className={styles.postListWrapper}>
         <h1>{forumnTitle}</h1>
         {postList.map((post) => (
           <Row className={styles.postWrapper} key={post.id}>
             <Col lg="8" className="ms-2 me-2">
-              <h3>{post.title}</h3>
+              <a href="../forumn/forumn-title/post-title">
+                <h3>{post.title}</h3>
+              </a>
               <p>
                 <b>Author</b>: {post.author}
                 <br />
