@@ -57,7 +57,7 @@ const UserFields = [
 const sensors = [
     {
         id : 1,
-        name: '1',
+        name: 'Bắp 1',
         type: "temp",
         data: 36,
         mode:'active',
@@ -65,7 +65,7 @@ const sensors = [
     },
     {
         id : 2,
-        name: '1',
+        name: 'Bắp 2',
         type: "temp",
         data: 37,
         mode:'disable',
@@ -74,7 +74,7 @@ const sensors = [
     },
     {
         id : 3,
-        name: '1',
+        name: 'Lúa',
         type: "moist",
         data: 20,
         mode:'active',
@@ -83,7 +83,7 @@ const sensors = [
     },
     {
         id : 4,
-        name: '1',
+        name: 'Táo',
         type: "moist",
         data: 25,
         mode:'active',
@@ -92,7 +92,7 @@ const sensors = [
     },
     {
         id : 5,
-        name: '1',
+        name: 'Lúa',
         type: "moist",
         data: 25,
         mode:'active',
@@ -101,7 +101,7 @@ const sensors = [
     },
     {
         id : 6,
-        name: '1',
+        name: 'Bắp',
         type: "moist",
         data: 25,
         mode:'active',
@@ -109,7 +109,7 @@ const sensors = [
     },
     {
         id : 7,
-        name: '1',
+        name: 'Bắp',
         type: "pump",
         data: 25,
         mode:'active',
@@ -117,7 +117,7 @@ const sensors = [
     } ,
     {
         id : 8,
-        name: '1',
+        name: 'Táo',
         type: "pump",
         data: 25,
         mode:'active',
