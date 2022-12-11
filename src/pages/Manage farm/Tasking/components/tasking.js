@@ -8,35 +8,31 @@ function Tasking() {
     const tasks = [
         {
             id: 1,
-            name: "Công việc 1",
-            description: "Là công việc đấy", 
-            time: {"day": 0, "hour": 0, "minute": 57},
-            start_time: "2022-12-01T01:15",
-            end_time: "2022-12-10T04:42"
+            name: "Final report",
+            description: "Báo cáo cuối kì môn Đồ án Công nghệ phần mềm", 
+            start_time: "2022-12-16T01:15",
+            end_time: "2022-12-17T09:00"
         },
         {
             id: 2,
-            name: "Công việc 2",
-            description: "Về nhà trồng rau nuôi cá",  
-            time: {"day": 0, "hour": 2, "minute": 34},
-            start_time: "2022-12-02T12:08",
-            end_time: "2022-12-14T16:01"
+            name: "Tưới nước vườn số 1",
+            description: "Tưới nước hàng tuần",  
+            start_time: "2022-12-16T12:08",
+            end_time: "2022-12-19T16:01"
         },
         {
             id: 3,
-            name: "Công việc 3", 
-            description: "Mang tiền về cho mẹ", 
-            time: {"day": 0, "hour": 3, "minute": 16},
-            start_time: "2022-12-02T10:58",
-            end_time: "2022-12-18T20:11"
+            name: "Cài đặt sensor", 
+            description: "Vừa mua các sensor mới, hãy nhớ cài đặt chúng", 
+            start_time: "2022-12-20T10:58",
+            end_time: "2022-12-21T20:11"
         },
         {
             id: 4,
-            name: "Công việc 4",
-            description: "Đừng mang ưu phiền về cho mẹ",  
-            time: {"day": 1, "hour": 10, "minute": 2},
-            start_time: "2022-12-04T11:00",
-            end_time: "2022-12-22T18:23"
+            name: "Thi cuối kì",
+            description: "Chuẩn bị kết thúc kì 221 bằng những bài thi cuối kì :(",  
+            start_time: "2022-12-25T11:00",
+            end_time: "2022-12-28T18:23"
         }
     ]
     const [taskList, updateTaskList] = useState(tasks)
