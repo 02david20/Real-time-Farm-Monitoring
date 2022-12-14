@@ -27,7 +27,7 @@ function UserSidebar({ children }) {
 
         {open && (
           <div>
-            <img src={logo} alt="" style={{ width: "80%" }} />
+            <Link to="/account"><img src={logo} alt="" style={{ width: "80%" }} /></Link>
 
             <div
               className="mb-5"

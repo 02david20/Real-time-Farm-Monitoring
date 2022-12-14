@@ -14,14 +14,14 @@ for (let i = 0; i < 5; i++) {
   forumns.push({
     id: i+1,
     forumnInfo: {
-      title: "Tuyệt vời lắm cháu",
+      title: "Hội những người con Quảng Nam",
       host: "Danh Nguyen",
-      dateCreated: "00-00-0000",
-      detail: "Forumn này toàn là sự tramkam"
+      dateCreated: "01-12-2022",
+      detail: "Chào mừng các anh chị em đến với hội"
     },
     newestPost: {
-      title: "Đây là post đầy hành",
-      dateCreated: "00-00-0000",
+      title: "Những quy tắc khi tham gia forumn",
+      dateCreated: "02-12-2022",
       author: "Danh Nguyen"
     },
     stats: {
