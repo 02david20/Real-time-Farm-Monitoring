@@ -9,7 +9,7 @@ import LoginsReport from "../pages/LoginsReport";
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
-  { path: "/", component: Home, layout: DefaultLayout },
+  { path: "/", component: LoginsReport },
   { path: "/feedbacks", component: Feedbacks },
   { path: "/logins-report", component: LoginsReport },
 ];
