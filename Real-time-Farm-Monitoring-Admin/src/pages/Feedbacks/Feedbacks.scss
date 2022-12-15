@@ -1,0 +1,38 @@
+.container {
+  padding-top: 50px;
+}
+
+div.modal-header {
+  display: flex;
+  flex-direction: column;
+}
+
+#nameAndDate {
+  display: inline;
+  width: 100%;
+}
+
+#senderName {
+  float: left;
+}
+
+#sendDate {
+  float: right;
+}
+
+div.modal-body {
+  line-height: 250%;
+  scrollbar-width: none;
+}
+
+body.modal-open > :not(.modal) {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}
+
+.modal-backdrop {
+  opacity: 0 !important;
+}

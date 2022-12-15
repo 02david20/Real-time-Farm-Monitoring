@@ -1,0 +1,13 @@
+body {
+  background-color: whitesmoke;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin-left: 64px;
+  padding: 0;
+}
