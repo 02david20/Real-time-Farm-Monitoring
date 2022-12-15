@@ -19,6 +19,7 @@ import PostDetail from "../pages/Post/PostDetail";
 import Account from "../pages/Account";
 import FeedbackForm from "../pages/SendFeedback";
 import SendFeedback from "../pages/SendFeedback";
+import Download from "../pages/Download";
 // Not Required Login
 // layout:null --> No Layout
 const publicRoutes = [
@@ -42,7 +43,8 @@ const publicRoutes = [
   { path: "/forumn/forumn-title", component: PostList },
   { path: "/forumn/forumn-title/post-title", component: PostDetail },
   { path: "/account", component: Account },
-  { path: "/SendFeedback", component: SendFeedback},
+  { path: "/SendFeedback", component: SendFeedback },
+  { path: "/download", component: Download },
 ];
 
 //Require Login

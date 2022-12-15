@@ -90,7 +90,7 @@ function FilterBar() {
             <Form.Control type="date" name="end_date" class="btn" />
           </div>
 
-          <Button variant="light">
+          <Button variant="light" href="/download">
             <FontAwesomeIcon icon={faDownload} />
           </Button>
         </div>
