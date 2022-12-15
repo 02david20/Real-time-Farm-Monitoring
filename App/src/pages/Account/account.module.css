@@ -1,0 +1,30 @@
+.main {
+    background-color: #EDF5E1;
+    padding-top: 70px;
+    font-size: 120%;
+    height: 100vh;
+}
+
+.section {
+    text-align: center;
+    padding: 10px 10px;
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+#yes {
+    background-color: #05386B;
+    color: white;
+}
+
+.info {
+    background-color: white;
+}
+
+.lineInfo {
+    padding: 10px 20px;
+}
+
+#nah {
+    display: none;
+}
