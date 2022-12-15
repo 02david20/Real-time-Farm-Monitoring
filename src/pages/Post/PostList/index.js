@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, Button, Row, Col, Form, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
   faEye,
   faComments,
@@ -11,13 +11,12 @@ import {
 
 import styles from "./postList.module.css";
 
-const forumnTitle = "Post title is not long enough for me";
+const forumnTitle = "Hội những người con Quảng Nam";
 const postList = [];
 for (let i = 1; i < 20; i++) {
   postList.push({
     id: i,
-    title:
-      "Đây là tiêu đề của post, mặc dù mình muốn cho nó dài nhưng lại chả biết ghi gì cả",
+    title: "Quy tắc trồng trọt và thu hoạch",
     author: "Hung Nguyen",
     dateCreated: "25-11-2022",
     view: 100,
@@ -70,28 +69,45 @@ function PostList() {
                   controlId="exampleForm.ControlTextarea1"
                 >
                   <Form.Label>Nội dung</Form.Label>
-                    <CKEditor
-                    editor={ ClassicEditor }
+                  <CKEditor
+                    editor={ClassicEditor}
                     data="<p>Hello from CKEditor 5!</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    config={{         
-          toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'link', 'numberedList', 'bulletedList', 'imageUpload', 'insertTable',
-            'tableColumn', 'tableRow', 'mergeTableCells', 'mediaEmbed', '|', 'undo', 'redo']
-        }}   
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                    />
+                    onReady={(editor) => {
+                      // You can store the "editor" and use when it is needed.
+                      console.log("Editor is ready to use!", editor);
+                    }}
+                    config={{
+                      toolbar: [
+                        "heading",
+                        "|",
+                        "bold",
+                        "italic",
+                        "blockQuote",
+                        "link",
+                        "numberedList",
+                        "bulletedList",
+                        "imageUpload",
+                        "insertTable",
+                        "tableColumn",
+                        "tableRow",
+                        "mergeTableCells",
+                        "mediaEmbed",
+                        "|",
+                        "undo",
+                        "redo",
+                      ],
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      console.log({ event, editor, data });
+                    }}
+                    onBlur={(event, editor) => {
+                      console.log("Blur.", editor);
+                    }}
+                    onFocus={(event, editor) => {
+                      console.log("Focus.", editor);
+                    }}
+                  />
                 </Form.Group>
               </Form>
             </Modal.Body>
@@ -108,7 +124,7 @@ function PostList() {
       </Row>
       <Container className={styles.postListWrapper}>
         <h1>{forumnTitle}</h1>
-        {postList.map((post,index) => (
+        {postList.map((post, index) => (
           <Row className={styles.postWrapper} key={post.id}>
             <Col lg="8" className="ms-2 me-2">
               <a href="../forumn/forumn-title/post-title">

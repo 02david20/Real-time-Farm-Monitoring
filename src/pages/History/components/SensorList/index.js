@@ -13,89 +13,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./sensorList.module.css";
-
-// DATA
-const data1 = [
-  {
-    name: "Jan",
-    temp: "22",
-  },
-  {
-    name: "Feb",
-    temp: "24",
-  },
-  {
-    name: "Mar",
-    temp: "23",
-  },
-  {
-    name: "Apr",
-    temp: "25",
-  },
-  {
-    name: "May",
-    temp: "27",
-  },
-  {
-    name: "Jun",
-    temp: "29",
-  },
-  {
-    name: "Jul",
-    temp: "32",
-  },
-  {
-    name: "Aug",
-    temp: "30",
-  },
-  {
-    name: "Sep",
-    temp: "28",
-  },
-  {
-    name: "Oct",
-    temp: "29",
-  },
-  {
-    name: "Nov",
-    temp: "27",
-  },
-  {
-    name: "Dec",
-    temp: "25",
-  },
-];
+import { data1, data2, data3 } from "../data";
 
 const sensors = [
   {
-    id: "001",
-    type: "Nhiệt độ",
+    id: "1",
+    name: "Lúa 1",
+    type: "temp",
     location: "[301; 732]",
     data: data1,
   },
   {
-    id: "001",
-    type: "Nhiệt độ",
+    id: "2",
+    type: "humidity",
+    name: "Lúa 2",
     location: "[1094; 2180]",
-    data: data1,
+    data: data2,
   },
   {
-    id: "001",
-    type: "Nhiệt độ",
+    id: "3",
+    type: "temp",
+    name: "Lúa 3",
     location: "[120; 88091]",
     data: data1,
   },
   {
-    id: "001",
-    type: "Nhiệt độ",
+    id: "4",
+    type: "pH",
+    name: "Lúa 4",
     location: "[49; 10]",
-    data: data1,
+    data: data3,
   },
   {
-    id: "001",
-    type: "Nhiệt độ",
+    id: "5",
+    type: "humidity",
+    name: "Lúa 5",
     location: "[1242; 902]",
-    data: data1,
+    data: data2,
   },
 ];
 
@@ -110,7 +64,8 @@ function SensorList() {
                 <Row>
                   <div className={styles.sensorInfo}>
                     <p>ID: {sensor.id}</p>
-                    <p>Sensor: {sensor.type}</p>
+                    <p>Type: {sensor.type}</p>
+                    <p>Name: {sensor.name}</p>
                     <p>
                       Tọa độ:<br></br> {sensor.location}
                     </p>
@@ -139,7 +94,7 @@ function SensorList() {
                         <Legend />
                         <Line
                           type="monotone"
-                          dataKey="temp"
+                          dataKey={sensor.type}
                           stroke="#8884d8"
                           activeDot={{ r: 8 }}
                         />
@@ -150,9 +105,9 @@ function SensorList() {
               </Col>
               <Col lg="1" md="1">
                 <Row>
-                  <div className={styles.downloadBtn}>
+                  <a className={styles.downloadBtn} href="/download">
                     <FontAwesomeIcon icon={faDownload} />
-                  </div>
+                  </a>
                 </Row>
               </Col>
             </Row>

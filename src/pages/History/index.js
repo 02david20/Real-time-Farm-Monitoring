@@ -1,6 +1,7 @@
 import styles from "./history.module.css";
 import FilterBar from "./components/FilterBar";
 import SensorList from "./components/SensorList";
+import { data1, data2, data3 } from "./components/data";
 
 import { Container, Col, Row } from "react-bootstrap";
 import React, { useState } from "react";
@@ -16,56 +17,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data1 = [
-  {
-    name: "Jan",
-    temp: "22",
-  },
-  {
-    name: "Feb",
-    temp: "24",
-  },
-  {
-    name: "Mar",
-    temp: "23",
-  },
-  {
-    name: "Apr",
-    temp: "25",
-  },
-  {
-    name: "May",
-    temp: "27",
-  },
-  {
-    name: "Jun",
-    temp: "29",
-  },
-  {
-    name: "Jul",
-    temp: "32",
-  },
-  {
-    name: "Aug",
-    temp: "30",
-  },
-  {
-    name: "Sep",
-    temp: "28",
-  },
-  {
-    name: "Oct",
-    temp: "29",
-  },
-  {
-    name: "Nov",
-    temp: "27",
-  },
-  {
-    name: "Dec",
-    temp: "25",
-  },
-];
+const avg = [26.8, 72.6, 7];
 
 function History() {
   return (
@@ -76,19 +28,19 @@ function History() {
           <Col lg="4">
             <div className={styles.avgTemp}>
               <p>Nhiệt độ trung bình</p>
-              <div className={styles.avgTempText}>26</div>
+              <div className={styles.avgTempText}>{avg[0]}</div>
             </div>
           </Col>
           <Col lg="4">
             <div className={styles.avgTemp}>
               <p>Độ ẩm trung bình</p>
-              <div className={styles.avgTempText}>26</div>
+              <div className={styles.avgTempText}>{avg[1]}</div>
             </div>
           </Col>
           <Col lg="4">
             <div className={styles.avgTemp}>
               <p>Độ pH trung bình</p>
-              <div className={styles.avgTempText}>26</div>
+              <div className={styles.avgTempText}>{avg[2]}</div>
             </div>
           </Col>
         </Row>
@@ -128,7 +80,7 @@ function History() {
                 <LineChart
                   width={500}
                   height={300}
-                  data={data1}
+                  data={data2}
                   margin={{
                     top: 5,
                     right: 30,
@@ -143,7 +95,7 @@ function History() {
                   <Legend />
                   <Line
                     type="monotone"
-                    dataKey="temp"
+                    dataKey="humidity"
                     stroke="#8884d8"
                     activeDot={{ r: 8 }}
                   />
@@ -157,7 +109,7 @@ function History() {
                 <LineChart
                   width={500}
                   height={300}
-                  data={data1}
+                  data={data3}
                   margin={{
                     top: 5,
                     right: 30,
@@ -172,7 +124,7 @@ function History() {
                   <Legend />
                   <Line
                     type="monotone"
-                    dataKey="temp"
+                    dataKey="pH"
                     stroke="#8884d8"
                     activeDot={{ r: 8 }}
                   />
