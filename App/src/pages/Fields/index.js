@@ -69,7 +69,7 @@ function Fields() {
                                 <Col>
                                     <Form.Control
                                         className="col"
-                                        type="text"
+                                        type="number"
                                         placeholder="Longtitude..."
                                     />
                                 </Col>
@@ -77,7 +77,7 @@ function Fields() {
                                 <Col>
                                     <Form.Control
                                         className="col"
-                                        type="text"
+                                        type="number"
                                         placeholder="Latitude..."
                                     />
                                 </Col>

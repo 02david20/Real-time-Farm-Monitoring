@@ -92,7 +92,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
         <div className="form-group row">
           <div className = "col-6">
             <label htmlFor="long">Longtitude</label>
-            <input type="text" 
+            <input type="number" 
                     className="form-control" 
                     id="long" 
                     placeholder=""
@@ -102,7 +102,7 @@ function SensorDetail({choose, setSensorList, sensorList, sensorChange, setShowF
           </div>
           <div className = "col-6">
             <label htmlFor="lat">Latitude</label>
-            <input type="text" 
+            <input type="number" 
                     className="form-control" 
                     id="lat" 
                     placeholder=""

@@ -50,6 +50,7 @@ const Dashboard = () => {
 
   return (
     <>
+      {/* Chart daily temp and Moisture*/}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -111,6 +112,7 @@ const Dashboard = () => {
         <CCardFooter></CCardFooter>
       </CCard>
 
+      {/* List of Sensors*/}
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
@@ -192,7 +194,9 @@ const Dashboard = () => {
                       </div>
                     </div>
                   ))}
+
                   <CRow>
+                    {/* Error and Warning*/}
                     <CCol>
                       <CWidgetStatsA
                         className="mb-4"

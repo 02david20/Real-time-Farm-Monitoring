@@ -65,7 +65,7 @@ function Sensors() {
                 .addTo(map.current);
     });
 
-    // Add Marker on
+    // If there is changed is in lng and lat, remove old marker and create new
     useEffect(() => {
         marker.current.remove(); 
         marker.current = new mapboxgl.Marker()
@@ -75,7 +75,7 @@ function Sensors() {
     
 
     // Move map when have change in lat and lng
-    // Change OnClick or change in sensorList
+    // Change onclick
     useEffect(() => {
         handleMoveMap(sensorList[choose].coordinate[0], sensorList[choose].coordinate[1])
 
@@ -223,6 +223,8 @@ function Sensors() {
     
     return (
         <div style={{height:"100%"}} className="container overflow-hidden">
+            
+             {/* Nút xác nhận */}
             <div className="btn btn-success"
                  style = {{
                     position: 'fixed',
@@ -313,7 +315,8 @@ function Sensors() {
                 >
                     <ol className="list-group">
 
-                        {sensorList.map((sensor,index) => {
+                        {   // Display all sensor
+                            sensorList.map((sensor,index) => {
                             return (
                                 <li key = {index}
                                     className="list-group-item mt-2"

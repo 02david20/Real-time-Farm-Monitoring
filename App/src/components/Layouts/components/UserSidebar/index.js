@@ -107,13 +107,17 @@ function UserSidebar({ children }) {
           {open && <img src={logo} alt="" style={{ width: "80%" }} />}
 
           <NavItem>
+
             <NavIcon>
-              <Icon
-                icon="codicon:sign-out"
-                color="white"
-                width="30"
-                height="30"
-              />
+
+              <Link to="/">
+                <Icon
+                  icon="codicon:sign-out"
+                  color="white"
+                  width="30"
+                  height="30"
+                />
+              </Link>
             </NavIcon>
 
             <NavText>Sign Out</NavText>
