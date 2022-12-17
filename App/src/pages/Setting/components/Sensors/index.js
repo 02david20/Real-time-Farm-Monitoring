@@ -118,7 +118,10 @@ function Sensors() {
             setSwitchSensor("disable")
             setSensorList(prev => {
                 prev[choose].mode='disable'
-                sensorChange.current[choose].push({mode:"disable"})
+                if(sensorChange.current[choose])
+                    sensorChange.current[choose].push({mode:"disable"})
+                else 
+                    sensorChange.current[1].push({mode:"disable"})
                 return prev;
             })
         }
@@ -126,7 +129,11 @@ function Sensors() {
             setSwitchSensor("active")
             setSensorList(prev => {
                 prev[choose].mode='active'
-                sensorChange.current[choose].push({mode:"active"})
+                if(sensorChange.current[choose])
+                    sensorChange.current[choose].push({mode:"active"})
+                else
+                    sensorChange.current[1].push({mode:"active"})
+                
                 return prev;
             })
         }

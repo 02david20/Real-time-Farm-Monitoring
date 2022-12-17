@@ -280,7 +280,7 @@ const sensorsDetail =
 
 
 const StatisticDaily =  {
-    labels:[],
+    labels:["Moisture", "Temperature"],
     datasets: [
         {
         label: 'Moisture',
